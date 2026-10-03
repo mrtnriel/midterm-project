@@ -1,0 +1,1034 @@
+/* ==========================================================================
+   Editorial Minimal Design Stylesheet
+   Project: Gabriel Martin R. Manalo - Portfolio (Midterm)
+   ========================================================================== */
+
+/* --- 1. Design Tokens & CSS Variables --- */
+:root {
+    /* Color Palette */
+    --bg: #f6f2ea;          /* Warm cream / off-white paper */
+    --ink: #15130f;         /* Near-black, slightly warm */
+    --ink-muted: #55524b;   /* Body / supporting narrative text */
+    --ink-subtle: #7a766d;  /* Navigation links, labels, captions */
+    --line: #d9d4c9;        /* Hairline borders */
+
+    /* Typography - One font family throughout (Inter / Neo-grotesque) */
+    --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, -apple-system, sans-serif;
+
+    /* Layout & Spacing */
+    --container: 1400px;
+    --gutter: clamp(20px, 5vw, 80px);
+    --radius: 0;            /* Strictly square corners */
+
+    /* Contact Form Card Tokens */
+    --card-bg: #ede8df;                     /* Warm parchment cream (exact tonal match between --bg and --line) */
+    --card-border: var(--line);             /* 1px hairline border matching site horizontal lines */
+    --card-padding: clamp(28px, 4vw, 40px); /* Comfortable 32-40px inner padding */
+    --card-gap: 1.5rem;                     /* Consistent form field spacing */
+}
+
+/* --- 2. Base Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessibility Skip Link */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: var(--gutter);
+    background: var(--ink);
+    color: var(--bg);
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    z-index: 1000;
+    border: 1px solid var(--ink);
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 15px;
+}
+
+:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* --- 3. Grid & Containers --- */
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* --- 4. Site Header & Navigation --- */
+.site-header {
+    border-bottom: 1px solid var(--line);
+    background-color: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    gap: 2rem;
+}
+
+.wordmark {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+nav a {
+    color: var(--ink-subtle);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.15s ease;
+}
+
+nav a:hover {
+    color: var(--ink);
+}
+
+.header-cta {
+    padding: 12px 20px !important;
+    font-size: 0.9rem !important;
+}
+
+/* --- 5. Buttons & Links --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 26px;
+    font: 500 1rem var(--font-sans);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
+.btn-secondary:hover {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.arrow-link, .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: opacity 0.15s ease;
+}
+
+.arrow-link:hover, .back-link:hover {
+    opacity: 0.7;
+}
+
+/* --- 6. Hero Section --- */
+.hero {
+    padding-block: clamp(80px, 14vh, 180px);
+}
+
+.eyebrow {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 19ch;
+    margin: 0 0 2rem;
+    color: var(--ink);
+}
+
+.lead {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    line-height: 1.5;
+    color: var(--ink-muted);
+    max-width: 42em;
+    margin: 0 0 2.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* --- 7. Sections Common Layout --- */
+.section {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(64px, 10vh, 120px);
+}
+
+.section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: clamp(36px, 6vh, 64px);
+}
+
+.section-index {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-subtle);
+    font-weight: 500;
+}
+
+.section h2 {
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--ink);
+}
+
+/* --- 8. About Section --- */
+.about-narrative {
+    max-width: 52em;
+}
+
+.about-narrative p {
+    font-size: 1.0625rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+}
+
+.about-narrative .narrative-lead {
+    font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+    color: var(--ink);
+    line-height: 1.45;
+    font-weight: 400;
+    margin-bottom: 1.75rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* --- 9. Projects Section --- */
+/* Header row containing section title and horizontal navigation arrows */
+.projects-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: clamp(36px, 6vh, 64px);
+}
+
+.projects-header-row .section-heading {
+    margin-bottom: 0;
+}
+
+.projects-nav-controls {
+    display: flex;
+    gap: 8px;
+}
+
+/* Restrained utilitarian arrow buttons matching site's square aesthetic */
+.projects-nav-btn {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.projects-nav-btn:hover {
+    border-color: var(--ink);
+    background-color: var(--ink);
+    color: var(--bg);
+}
+
+.projects-nav-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.projects-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+    border-color: var(--line);
+    background: transparent;
+    color: var(--ink-subtle);
+}
+
+/* Wide 1600px container for project cards rail */
+.projects-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* Horizontal scrollable track (Ghost Rail: invisible scrollbar, zero clutter) */
+.projects-grid {
+    display: flex;
+    gap: clamp(24px, 3vw, 36px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-top: 4px;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.projects-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Wide self-contained editorial card: comfortably wide with clear right-edge peek */
+.project-card {
+    flex: 0 0 clamp(420px, 42vw, 580px);
+    scroll-snap-align: start;
+    background-color: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+
+/* Restrained hover state: slight lift and border darkening */
+.project-card:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.project-card:focus-within {
+    border-color: var(--ink);
+}
+
+/* Inner content area: Insets top visual and content with consistent padding */
+.project-card-inner {
+    padding: clamp(20px, 2.5vw, 28px);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+/* Framed top visual area */
+.project-card-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--card-bg);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Technical architectural grid pattern & blueprint styling */
+.visual-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--card-bg);
+    background-image: 
+        linear-gradient(to right, rgba(21, 19, 15, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(21, 19, 15, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center center;
+    user-select: none;
+}
+
+/* Subtle architectural corner framing brackets */
+.visual-placeholder::before,
+.visual-placeholder::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+.visual-placeholder::before {
+    top: 8px;
+    left: 8px;
+    border-top: 1px solid var(--ink-subtle);
+    border-left: 1px solid var(--ink-subtle);
+}
+
+.visual-placeholder::after {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 1px solid var(--ink-subtle);
+    border-right: 1px solid var(--ink-subtle);
+}
+
+/* Large typographic watermark project numeral */
+.visual-watermark {
+    font-family: var(--font-sans);
+    font-size: clamp(3rem, 5vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    opacity: 0.12;
+    line-height: 1;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover .visual-watermark {
+    opacity: 0.18;
+    transform: scale(1.04);
+}
+
+/* Quiet preview status tag - single font family */
+.visual-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-subtle);
+    background-color: rgba(246, 242, 234, 0.92);
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    line-height: 1.2;
+}
+
+/* Screenshot image support: swaps seamlessly over placeholder */
+.project-card-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover .project-card-visual img {
+    transform: scale(1.02);
+}
+
+/* Uppercase meta row: single font family (--font-sans), slight tracking */
+.project-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-card-meta .project-num {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.project-meta-separator {
+    color: var(--line);
+    font-size: 0.7rem;
+}
+
+.project-card-meta .project-tag {
+    color: var(--ink-subtle);
+    font-weight: 500;
+}
+
+/* Dominant bold project title */
+.project-title {
+    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+
+/* Muted body description in comfortable line height */
+.project-desc {
+    color: var(--ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+/* Quiet tech stack meta row: single font family (--font-sans) */
+.project-tech {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--ink-subtle);
+    font-weight: 500;
+    margin-top: auto;
+    padding-top: 1.25rem;
+}
+
+.project-tech .tech-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--line);
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+}
+
+/* Bottom CTA separated by a hairline divider */
+.project-card-action {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+}
+
+.project-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.125rem clamp(20px, 2.5vw, 28px);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.project-card-link:hover {
+    background-color: var(--card-bg);
+    color: var(--ink);
+}
+
+.project-card-link:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: -2px;
+    background-color: var(--card-bg);
+}
+
+.card-arrow {
+    display: inline-block;
+    font-size: 1.05rem;
+    line-height: 1;
+    transition: transform 0.15s ease;
+}
+
+.project-card:hover .card-arrow,
+.project-card-link:hover .card-arrow {
+    transform: translateX(4px);
+}
+
+/* --- 10. Tech Stack Section --- */
+.stack-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+}
+
+.stack-col {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-right: 1px solid var(--line);
+}
+
+.stack-col:last-child {
+    border-right: none;
+}
+
+.stack-col:not(:first-child) {
+    padding-left: 2rem;
+}
+
+.stack-category {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.stack-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.stack-items li {
+    font-size: 1rem;
+    color: var(--ink-muted);
+}
+
+/* --- 11. Experience & Education --- */
+.experience-list, .education-block {
+    border-top: 1px solid var(--line);
+}
+
+.timeline-row, .education-item {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    padding-block: 2.5rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.timeline-meta, .education-meta {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.timeline-meta p, .education-meta p {                                       
+    white-space: nowrap;                                  
+}  
+
+.timeline-badge {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--ink-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.timeline-role, .degree-name {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+}
+
+.timeline-org, .institution-name {
+    font-size: 1rem;
+    color: var(--ink-subtle);
+    margin-bottom: 1.25rem;
+}
+
+.timeline-details {
+    list-style-position: inside;
+    color: var(--ink-muted);
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.education-summary {
+    color: var(--ink-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 45em;
+}
+
+/* --- 12. Certificates Section --- */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    border-top: 1px solid var(--line);
+    padding-top: 2.5rem;
+}
+
+.certificate-entry {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2rem;
+}
+
+.cert-year {
+    font-size: 0.85rem;
+    color: var(--ink-subtle);
+    font-weight: 600;
+}
+
+.cert-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0.25rem 0 0.5rem;
+}
+
+.cert-issuer {
+    font-size: 0.95rem;
+    color: var(--ink-subtle);
+    margin-bottom: 0.75rem;
+}
+
+.cert-note {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+}
+
+/* --- 13. Contact Section --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(36px, 6vw, 96px);
+    align-items: start;
+}
+
+.contact-channels {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+}
+
+.channel-item {
+    display: flex;
+    flex-direction: column;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--line);
+    gap: 0.25rem;
+}
+
+.channel-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-subtle);
+}
+
+.channel-value {
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.15s ease;
+}
+
+.channel-value:hover {
+    opacity: 0.7;
+}
+
+/* Contact Card Container: Sharp, flat, restrained editorial panel */
+.contact-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: var(--card-padding);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Card Header: Quiet uppercase label matching left column dividers */
+.card-header {
+    padding-bottom: 1rem;
+    margin-bottom: var(--card-gap);
+    border-bottom: 1px solid var(--line);
+}
+
+.card-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+}
+
+/* Editorial Form Layout */
+.editorial-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+    width: 100%;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.field-group label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+    font-weight: 500;
+}
+
+/* Input & Textarea Elements: Hairline borders matching website horizontal lines */
+.field-group input,
+.field-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Subtle hover feedback: slightly darker tone before active focus */
+.field-group input:hover,
+.field-group textarea:hover {
+    border-color: var(--ink-subtle);
+}
+
+/* Accessible Focus States: Eliminates browser blue outline; sharp ink border highlight */
+.field-group input:focus,
+.field-group textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 1px var(--ink);
+    background-color: var(--line);
+}
+
+.field-group input:focus-visible,
+.field-group textarea:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+/* Submit Button & Hover: Clean inversion with subtle arrow nudge */
+.form-submit {
+    align-self: flex-start;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.form-submit span {
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+.form-submit:hover span {
+    transform: translateX(4px);
+}
+
+/* --- 14. Footer --- */
+.site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem;
+    margin-top: clamp(60px, 10vh, 120px);
+}
+
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--ink-subtle);
+    gap: 1.5rem;
+}
+
+.copyright {
+    color: var(--ink-subtle);
+}
+
+/* --- 15. Responsive Adaptations --- */
+@media (max-width: 1024px) {
+    .projects-grid {
+        gap: 24px;
+    }
+
+    .stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stack-col:nth-child(2) {
+        border-right: none;
+    }
+
+    .stack-col:nth-child(3) {
+        padding-left: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .stack-col:nth-child(4) {
+        border-top: 1px solid var(--line);
+    }
+}
+
+@media (max-width: 820px) {
+    .header-row {
+        height: auto;
+        padding-block: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+
+    .header-cta {
+        display: none;
+    }
+
+    .contact-grid,
+    .timeline-row,
+    .education-item,
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stack-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stack-col {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .stack-col:last-child {
+        border-bottom: none;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .contact-card {
+        padding: clamp(24px, 5vw, 32px);
+    }
+}
+
+@media (max-width: 680px) {
+    .projects-grid {
+        gap: 20px;
+    }
+
+    .project-card {
+        flex: 0 0 clamp(280px, 84vw, 420px);
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 24px 18px;
+    }
+}
+
+/* Accessibility: Honor reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .form-submit,
+    .form-submit span,
+    .project-card,
+    .project-card:hover,
+    .card-arrow,
+    .visual-watermark,
+    .project-card-visual img {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .form-submit:hover span,
+    .project-card:hover .card-arrow,
+    .project-card-link:hover .card-arrow {
+        transform: none !important;
+    }
+}
+
