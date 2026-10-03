@@ -457,7 +457,6 @@ nav a::after {
         height: clamp(340px, 58vh, 440px);
     }
 }
-}
 
 /* --- 7. Sections Common Layout --- */
 .section {
