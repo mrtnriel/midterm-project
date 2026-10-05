@@ -93,7 +93,9 @@ body {
 /* --- 4. Site Header & Navigation --- */
 .site-header {
     border-bottom: 1px solid var(--line);
-    background-color: var(--bg);
+    background-color: rgba(246, 242, 234, 0.65);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -258,7 +260,7 @@ nav a::after {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-block: clamp(2rem, 5vh, 4rem);
+    padding-block: clamp(3rem, 8vh, 6rem);
     position: relative;
 }
 
@@ -267,113 +269,10 @@ nav a::after {
     margin-block: auto;
 }
 
-/* Two-column editorial layout for narrative & portrait */
-.hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) auto;
-    align-items: center;
-    gap: clamp(36px, 5vw, 80px);
-    width: 100%;
-}
-
 .hero-content {
     display: flex;
     flex-direction: column;
-}
-
-/* Hero Portrait Media with Offset Architectural Outline Frame */
-.hero-media {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 18px; /* Room for 16px offset outline frame so it stays in container bounds */
-    padding-bottom: 18px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    animation: heroFadeUp 0.65s var(--ease-out) 0.18s both;
-}
-
-.hero-portrait-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-/* Thin outline frame offset behind the portrait by 16px to create architectural depth */
-.hero-portrait-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    transform: translate(16px, 16px);
-    z-index: 0;
-    pointer-events: none;
-    transition: transform 380ms var(--ease-out),
-                border-color 380ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .hero-portrait-wrapper:hover::before {
-        transform: translate(20px, 20px);
-        border-color: var(--ink);
-    }
-}
-
-/* Foreground portrait frame: taller (70-76% of hero height), strictly rectangular */
-.hero-image-frame {
-    position: relative;
-    z-index: 1;
-    height: clamp(440px, 70vh, 660px);
-    aspect-ratio: 1 / 1.42;
-    background-color: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: border-color 380ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .hero-portrait-wrapper:hover .hero-image-frame {
-        border-color: var(--ink);
-    }
-}
-
-.hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-    border-radius: var(--radius);
-    transition: transform 420ms var(--ease-out);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .hero-portrait-wrapper:hover .hero-image {
-        transform: scale(1.035);
-    }
-}
-
-/* Quiet technical label matching visual-tag */
-.hero-image-tag {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-subtle);
-    background-color: rgba(246, 242, 234, 0.92);
-    padding: 3px 8px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    line-height: 1.2;
-    pointer-events: none;
-    white-space: nowrap;
+    max-width: 68ch;
 }
 
 /* Page-Load Cascade Entrance */
@@ -452,10 +351,6 @@ nav a::after {
         margin-bottom: clamp(1rem, 2vh, 1.5rem);
         font-size: clamp(0.95rem, 0.7vw + 0.7rem, 1.15rem);
     }
-
-    .hero-image-frame {
-        height: clamp(340px, 58vh, 440px);
-    }
 }
 
 /* --- 7. Sections Common Layout --- */
@@ -488,6 +383,14 @@ nav a::after {
 }
 
 /* --- 8. About Section --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 380px);
+    align-items: start;
+    justify-content: space-between;
+    gap: clamp(36px, 5vw, 80px);
+}
+
 .about-narrative {
     max-width: 52em;
 }
@@ -502,6 +405,10 @@ nav a::after {
     hyphens: auto;
 }
 
+.about-narrative p:last-child {
+    margin-bottom: 0;
+}
+
 .about-narrative .narrative-lead {
     font-size: clamp(1.25rem, 2.5vw, 1.45rem);
     color: var(--ink);
@@ -510,6 +417,82 @@ nav a::after {
     margin-bottom: 1.75rem;
     text-align: justify;
     text-justify: inter-word;
+}
+
+/* About Portrait Media with Offset Architectural Outline Frame */
+.about-media {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-right: 18px; /* Room for 16px offset outline frame so it stays in container bounds */
+    padding-bottom: 18px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.about-portrait-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Thin outline frame offset behind the portrait by 16px to create architectural depth */
+.about-portrait-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transform: translate(16px, 16px);
+    z-index: 0;
+    pointer-events: none;
+    transition: transform 380ms var(--ease-out),
+                border-color 380ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .about-portrait-wrapper:hover::before {
+        transform: translate(20px, 20px);
+        border-color: var(--ink);
+    }
+}
+
+/* Foreground portrait frame: strictly rectangular, matching editorial design tokens */
+.about-image-frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1 / 1.38;
+    background-color: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 380ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .about-portrait-wrapper:hover .about-image-frame {
+        border-color: var(--ink);
+    }
+}
+
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    border-radius: var(--radius);
+    transition: transform 420ms var(--ease-out);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .about-portrait-wrapper:hover .about-image {
+        transform: scale(1.035);
+    }
 }
 
 /* --- 9. Projects Section --- */
@@ -582,7 +565,7 @@ nav a::after {
     color: var(--ink-subtle);
 }
 
-/* Wide 1600px container for project cards rail */
+/* Wide container for project cards rail */
 .projects-container {
     max-width: 1600px;
     margin: 0 auto;
@@ -592,7 +575,7 @@ nav a::after {
 /* Horizontal scrollable track (Ghost Rail: invisible scrollbar, zero clutter) */
 .projects-grid {
     display: flex;
-    gap: clamp(24px, 3vw, 36px);
+    gap: clamp(20px, 2.5vw, 32px);
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -609,9 +592,9 @@ nav a::after {
     display: none;
 }
 
-/* Wide self-contained editorial card: comfortably wide with clear right-edge peek */
+/* Balanced self-contained editorial card: compact, refined with clear right-edge peek */
 .project-card {
-    flex: 0 0 clamp(420px, 42vw, 580px);
+    flex: 0 0 clamp(380px, 34vw, 480px);
     scroll-snap-align: start;
     background-color: var(--bg);
     border: 1px solid var(--line);
@@ -642,17 +625,17 @@ nav a::after {
 
 /* Inner content area: Insets top visual and content with consistent padding */
 .project-card-inner {
-    padding: clamp(20px, 2.5vw, 28px);
+    padding: clamp(18px, 2vw, 24px);
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
 }
 
-/* Framed top visual area */
+/* Framed top visual area: calibrated to 1.97/1 (~1920x970) so wide screenshots fit without edge cropping */
 .project-card-visual {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1.97 / 1;
     background-color: var(--card-bg);
     border: 1px solid var(--line);
     overflow: hidden;
@@ -749,6 +732,7 @@ nav a::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     display: block;
     z-index: 2;
     transition: transform 360ms var(--ease-out);
@@ -768,12 +752,12 @@ nav a::after {
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.775rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .project-card-meta .project-num {
@@ -793,32 +777,32 @@ nav a::after {
 
 /* Dominant bold project title */
 .project-title {
-    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+    font-size: clamp(1.125rem, 1.3vw, 1.25rem);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.25;
     color: var(--ink);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.625rem;
 }
 
 /* Muted body description in comfortable line height */
 .project-desc {
     color: var(--ink-muted);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    font-size: 0.90625rem;
+    line-height: 1.55;
+    margin-bottom: 0.875rem;
     text-align: left;
 }
 
 /* Quiet tech stack meta row: single font family (--font-sans) */
 .project-tech {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: 0.8125rem;
     line-height: 1.5;
     color: var(--ink-subtle);
     font-weight: 500;
     margin-top: auto;
-    padding-top: 1.25rem;
+    padding-top: 1rem;
 }
 
 .project-tech .tech-tag {
@@ -842,9 +826,9 @@ nav a::after {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1.125rem clamp(20px, 2.5vw, 28px);
+    padding: 1rem clamp(18px, 2vw, 24px);
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1015,8 +999,8 @@ nav a::after {
 /* --- 12. Certificates Section --- */
 .certificates-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(24px, 3.5vw, 40px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 40px);
     border-top: 1px solid var(--line);
     padding-top: 2.5rem;
 }
@@ -1024,7 +1008,6 @@ nav a::after {
 .certificate-entry {
     display: flex;
     flex-direction: column;
-    min-width: 0;
     border-bottom: 1px solid var(--line);
     padding-bottom: 2rem;
     transition: border-color var(--duration-base) var(--ease-out);
@@ -1044,22 +1027,17 @@ nav a::after {
 .cert-visual {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     background-color: var(--card-bg);
     border: 1px solid var(--line);
     overflow: hidden;
     margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     text-decoration: none;
     color: inherit;
-    flex-shrink: 0;
 }
 
 .cert-visual img {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1067,13 +1045,6 @@ nav a::after {
     transition: transform 360ms var(--ease-out);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-}
-
-.cert-visual .visual-placeholder {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1387,7 +1358,7 @@ nav a::after {
     }
 
     .certificates-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1395,18 +1366,22 @@ nav a::after {
     .header-cta {
         display: none;
     }
-
-    .hero-grid {
-        grid-template-columns: minmax(0, 1.2fr) auto;
-        gap: clamp(24px, 4vw, 48px);
-    }
-
-    .hero-image-frame {
-        height: clamp(380px, 55vh, 500px);
-    }
 }
 
 @media (max-width: 820px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .about-media {
+        justify-content: flex-start;
+    }
+
+    .about-portrait-wrapper {
+        max-width: 320px;
+    }
+
     .contact-grid,
     .timeline-row,
     .education-item,
@@ -1465,32 +1440,29 @@ nav a::after {
     }
 
     .hero {
-        padding-block: clamp(1rem, 2vh, 1.5rem);
+        padding-block: clamp(2rem, 5vh, 3.5rem);
     }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: clamp(12px, 2vh, 18px);
-    }
-
-    .hero-media {
-        order: -1;
+    .about-media {
         justify-content: flex-start;
         padding-right: 12px;
         padding-bottom: 12px;
     }
 
-    .hero-portrait-wrapper::before {
+    .about-portrait-wrapper {
+        max-width: 280px;
+    }
+
+    .about-portrait-wrapper::before {
         transform: translate(12px, 12px);
         border-radius: var(--radius);
     }
 
-    .hero-image-frame {
-        height: clamp(180px, 24vh, 230px);
+    .about-image-frame {
         border-radius: var(--radius);
     }
 
-    .hero-image {
+    .about-image {
         border-radius: var(--radius);
     }
 
@@ -1499,7 +1471,7 @@ nav a::after {
     }
 
     .project-card {
-        flex: 0 0 clamp(280px, 84vw, 420px);
+        flex: 0 0 clamp(280px, 80vw, 360px);
     }
 }
 
@@ -1542,11 +1514,11 @@ nav a::after {
         font-size: 0.875rem;
     }
 
-    .hero-image-frame {
-        height: clamp(140px, 44vh, 200px);
+    .about-portrait-wrapper {
+        max-width: 220px;
     }
 
-    .hero-portrait-wrapper::before {
+    .about-portrait-wrapper::before {
         transform: translate(8px, 8px);
     }
 }
@@ -1635,10 +1607,10 @@ nav a::after {
     .education-body,
     .certificate-entry,
     .cert-title,
-    .hero-media,
-    .hero-portrait-wrapper::before,
-    .hero-image-frame,
-    .hero-image,
+    .about-media,
+    .about-portrait-wrapper::before,
+    .about-image-frame,
+    .about-image,
     nav a::after {
         animation: none !important;
         transition: none !important;

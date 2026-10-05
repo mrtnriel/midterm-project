@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=9">
+    <link rel="stylesheet" href="css/style.css?v=17">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
          ================================================================= -->
     <header class="site-header">
         <div class="container header-row">
-            <a class="wordmark" href="#hero">GABRIEL MARTIN</a>
+            <a class="wordmark" href="#hero">mrtn.riel</a>
 
             <nav aria-label="Main Navigation">
                 <a href="#about">About</a>
@@ -50,7 +50,7 @@
 
         <!-- 1. HERO SECTION -->
         <section id="hero" class="hero" aria-labelledby="hero-title">
-            <div class="container hero-grid">
+            <div class="container">
                 <div class="hero-content reveal">
                     <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
                     <h1 id="hero-title" class="hero-title">
@@ -64,14 +64,6 @@
                         <a class="btn btn-secondary" href="#contact">Get In Touch <span>&rarr;</span></a>
                     </div>
                 </div>
-
-                <div class="hero-media reveal reveal-stagger-1">
-                    <div class="hero-portrait-wrapper">
-                        <div class="hero-image-frame">
-                            <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="hero-image" width="1090" height="1596" loading="eager" decoding="async">
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -83,19 +75,29 @@
                     <h2 id="about-title">About</h2>
                 </div>
 
-                <div class="about-narrative reveal">
-                    <p class="narrative-lead">
-                        I approach IT not simply as writing code, but as designing effective solutions to complex technical and architectural problems.
-                    </p>
-                    <p>
-                        I'm Gabriel Martin R. Manalo, a BS Information Technology student with a core understanding of full-stack software development and modern database systems.
-                    </p>
-                    <p>
-                        I evaluate technology with an architectural perspective: structuring robust backend logic, understanding data relationships, and designing interfaces that prioritize usability and performance.
-                    </p>
-                    <p>
-                        I am eager to apply my skills in a real-world environment, collaborate with industry professionals, and continuously strengthen my technical expertise and problem-solving capabilities.
-                    </p>
+                <div class="about-grid">
+                    <div class="about-narrative reveal">
+                        <p class="narrative-lead">
+                            I approach IT not simply as writing code, but as designing effective solutions to complex technical and architectural problems.
+                        </p>
+                        <p>
+                            I'm Gabriel Martin R. Manalo, a BS Information Technology student with a core understanding of full-stack software development and modern database systems.
+                        </p>
+                        <p>
+                            I evaluate technology with an architectural perspective: structuring robust backend logic, understanding data relationships, and designing interfaces that prioritize usability and performance.
+                        </p>
+                        <p>
+                            I am eager to apply my skills in a real-world environment, collaborate with industry professionals, and continuously strengthen my technical expertise and problem-solving capabilities.
+                        </p>
+                    </div>
+
+                    <div class="about-media reveal reveal-stagger-1">
+                        <div class="about-portrait-wrapper">
+                            <div class="about-image-frame">
+                                <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="about-image" width="1090" height="1596" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -151,11 +153,7 @@
                     <article class="project-card reveal reveal-stagger-2">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
-                                <!-- Styled visual placeholder panel (replace with <img> when screenshots are ready) -->
-                                <div class="visual-placeholder" aria-hidden="true">
-                                    <span class="visual-watermark">02</span>
-                                    <span class="visual-tag">PREVIEW // 02</span>
-                                </div>
+                                <img src="assets/proj/figma.png" alt="PUPWESTO" loading="lazy">
                             </div>
 
                             <div class="project-card-meta">
@@ -185,35 +183,64 @@
                     <article class="project-card reveal reveal-stagger-3">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
-                                <!-- Styled visual placeholder panel (replace with <img> when screenshots are ready) -->
-                                <div class="visual-placeholder" aria-hidden="true">
-                                    <span class="visual-watermark">03</span>
-                                    <span class="visual-tag">PREVIEW // 03</span>
-                                </div>
+                                <img src="assets/proj/koso-preview.webp" alt="koso-lifewear" loading="lazy">
                             </div>
 
                             <div class="project-card-meta">
                                 <span class="project-num">03</span>
                                 <span class="project-meta-separator" aria-hidden="true">&bull;</span>
-                                <span class="project-tag">Enterprise Networking</span>
+                                <span class="project-tag">Front-End Development</span>
                             </div>
 
-                            <h3 class="project-title">Enterprise Network Topology</h3>
+                            <h3 class="project-title">Koso Lifewear</h3>
 
                             <p class="project-desc">
-                                Collaborated to design and troubleshoot a multi-tier enterprise network infrastructure integrating core switches and ISP connections through a Cisco ASA 5506-X firewall.
+                                A minimalist fashion e-commerce app built with React and Tailwind CSS to practice accessible UI design, spring motion physics, and responsive layouts, developed with the help of AI-assisted coding using Antigravity.
                             </p>
 
-                            <p class="project-tech">Cisco Packet Tracer &bull; Cisco ASA 5506-X &bull; VLANs &bull; Network Security</p>
+                            <p class="project-tech">Antigravity &bull; React &bull; Vite &bull; Tailwind CSS &bull; TypeScript </p>
                         </div>
 
                         <div class="project-card-action">
-                            <a href="https://github.com/mrtnriel" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Documentation for Enterprise Network Topology">
-                                <span>Documentation</span>
+                            <a href="https://koso-lifewear.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Documentation for Enterprise Network Topology">
+                                <span>Live Demo</span>
                                 <span class="card-arrow" aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
                     </article>
+
+                    <!-- Project Card 04 -->
+                    <article class="project-card reveal reveal-stagger-3">
+                        <div class="project-card-inner">
+                            <div class="project-card-visual">
+                                <img src="assets/proj/axis-studio.webp" alt="axis-studio" loading="lazy">
+                            </div>
+
+                            <div class="project-card-meta">
+                                <span class="project-num">04</span>
+                                <span class="project-meta-separator" aria-hidden="true">&bull;</span>
+                                <span class="project-tag">Front-End Development</span>
+                            </div>
+
+                            <h3 class="project-title">Axis Studio</h3>
+
+                            <p class="project-desc">
+                                Axis Studio is an interactive 3D mechanical keyboard customizer and storefront built with React 19, Three.js, and Tailwind CSS v4, developed with the help of AI-assisted coding using Google Antigravity.
+                            </p>
+
+                            <p class="project-tech">Antigravity &bull; React &bull; Vite &bull; Three.js &bull; Web-Audio API &bull; Tailwind CSS</p>
+                        </div>
+
+                        <div class="project-card-action">
+                            <a href="https://axis-studio-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Documentation for Enterprise Network Topology">
+                                <span>Live Demo</span>
+                                <span class="card-arrow" aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                    </article>
+
+
+
                 </div>
             </div>
         </section>
@@ -396,36 +423,6 @@
                             </a>
                         </div>
                     </article>
-
-                    <!-- Certificate Entry 02: Web Development -->
-                    <article class="certificate-entry reveal reveal-stagger-2">
-                        <div class="cert-visual" aria-hidden="true">
-                            <div class="visual-placeholder">
-                                <span class="visual-watermark">02</span>
-                                <span class="visual-tag">ACADEMIC // 02</span>
-                            </div>
-                        </div>
-
-                        <span class="cert-year">2025</span>
-                        <h3 class="cert-title">Web Development & HTML5 Standards</h3>
-                        <p class="cert-issuer">Academic Coursework & Training</p>
-                        <p class="cert-note">Covering document semantics, accessibility guidelines (WCAG), and responsive layout structures.</p>
-                    </article>
-
-                    <!-- Certificate Entry 03: Relational Database Design -->
-                    <article class="certificate-entry reveal reveal-stagger-3">
-                        <div class="cert-visual" aria-hidden="true">
-                            <div class="visual-placeholder">
-                                <span class="visual-watermark">03</span>
-                                <span class="visual-tag">ACADEMIC // 03</span>
-                            </div>
-                        </div>
-
-                        <span class="cert-year">2025</span>
-                        <h3 class="cert-title">Relational Database Design & SQL</h3>
-                        <p class="cert-issuer">Database Systems Curriculum</p>
-                        <p class="cert-note">Schema normalization, indexing strategies, transactional safety, and query optimization.</p>
-                    </article>
                 </div>
             </div>
         </section>
@@ -456,10 +453,6 @@
                             <div class="channel-item">
                                 <span class="channel-label">LinkedIn</span>
                                 <a href="https://www.linkedin.com/in/gabriel-martin-manalo-411a0134a/" target="_blank" rel="noopener noreferrer" class="channel-value">Gabriel Martin Manalo <span>&rarr;</span></a>
-                            </div>
-                            <div class="channel-item">
-                                <span class="channel-label">Location</span>
-                                <span class="channel-value">Quezon City, Philippines</span>
                             </div>
                         </div>
                     </div>
@@ -557,7 +550,9 @@
             if (grid && prevBtn && nextBtn) {
                 const getScrollAmount = () => {
                     const firstCard = grid.querySelector('.project-card');
-                    return firstCard ? firstCard.offsetWidth + 28 : 460;
+                    if (!firstCard) return 500;
+                    const gap = parseFloat(window.getComputedStyle(grid).gap) || 32;
+                    return firstCard.offsetWidth + gap;
                 };
 
                 const updateButtonStates = () => {
