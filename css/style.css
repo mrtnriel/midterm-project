@@ -28,10 +28,10 @@
     --card-gap: 1.5rem;                     /* Consistent form field spacing */
 
     /* Motion Tokens (Smooth Hardware-Accelerated Physics) */
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --duration-micro: 130ms;
     --duration-base: 240ms;
-    --duration-reveal: 480ms;
+    --duration-reveal: 640ms;
 }
 
 /* --- 2. Base Reset --- */
@@ -380,11 +380,11 @@ nav a::after {
 @keyframes heroFadeUp {
     0% {
         opacity: 0;
-        transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 36px, 0) scale(0.97);
     }
     100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 }
 
@@ -397,7 +397,7 @@ nav a::after {
     font-weight: 500;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    animation: heroFadeUp 0.6s var(--ease-out) 0.05s both;
+    animation: heroFadeUp 0.7s var(--ease-out) 0.06s both;
 }
 
 .hero-title {
@@ -411,7 +411,7 @@ nav a::after {
     text-wrap: balance;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    animation: heroFadeUp 0.65s var(--ease-out) 0.12s both;
+    animation: heroFadeUp 0.75s var(--ease-out) 0.16s both;
 }
 
 .lead {
@@ -424,7 +424,7 @@ nav a::after {
     text-wrap: pretty;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    animation: heroFadeUp 0.65s var(--ease-out) 0.20s both;
+    animation: heroFadeUp 0.75s var(--ease-out) 0.28s both;
 }
 
 .actions {
@@ -434,7 +434,7 @@ nav a::after {
     align-items: center;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    animation: heroFadeUp 0.65s var(--ease-out) 0.28s both;
+    animation: heroFadeUp 0.75s var(--ease-out) 0.40s both;
 }
 
 /* Short screen safeguard: compact vertical rhythm for laptop/landscape screens (e.g. 1366x768 with browser chrome, 844x390) */
@@ -1464,7 +1464,7 @@ nav a::after {
     }
 }
 
-/* --- 16. Scroll-Driven Editorial Reveal --- */
+/* --- 16. Scroll-Driven Editorial Reveal & Reversible Exit --- */
 /* Fallback: Elements are fully visible by default for zero-JS and SEO safety */
 .reveal {
     opacity: 1;
@@ -1474,23 +1474,30 @@ nav a::after {
 /* Progressive enhancement: when JavaScript is active, set initial reveal state */
 .js .reveal {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
+    transform: translate3d(0, 48px, 0) scale(0.96);
     transition: opacity var(--duration-reveal) var(--ease-out),
                 transform var(--duration-reveal) var(--ease-out);
+    will-change: opacity, transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
 .js .reveal.is-revealed {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Exit towards top when scrolling down past a section */
+.js .reveal.is-exited-top {
+    opacity: 0;
+    transform: translate3d(0, -40px, 0) scale(0.96);
 }
 
 /* Stagger delay classes for multi-item columns, cards, and lists */
-.js .reveal-stagger-1 { transition-delay: 50ms; }
-.js .reveal-stagger-2 { transition-delay: 110ms; }
-.js .reveal-stagger-3 { transition-delay: 170ms; }
-.js .reveal-stagger-4 { transition-delay: 230ms; }
+.js .reveal-stagger-1 { transition-delay: 90ms; }
+.js .reveal-stagger-2 { transition-delay: 180ms; }
+.js .reveal-stagger-3 { transition-delay: 270ms; }
+.js .reveal-stagger-4 { transition-delay: 360ms; }
 
 /* Accessibility: Honor reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
@@ -1502,7 +1509,9 @@ nav a::after {
     }
 
     .reveal,
-    .js .reveal {
+    .js .reveal,
+    .js .reveal.is-revealed,
+    .js .reveal.is-exited-top {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 
 <body>
@@ -51,7 +51,7 @@
         <!-- 1. HERO SECTION -->
         <section id="hero" class="hero" aria-labelledby="hero-title">
             <div class="container hero-grid">
-                <div class="hero-content">
+                <div class="hero-content reveal">
                     <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
                     <h1 id="hero-title" class="hero-title">
                         Hello! I'm Martin
@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="hero-media">
+                <div class="hero-media reveal reveal-stagger-1">
                     <div class="hero-portrait-wrapper">
                         <div class="hero-image-frame">
                             <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="hero-image" width="1090" height="1596" loading="eager" decoding="async">
@@ -475,9 +475,9 @@
         </div>
     </footer>
 
-    <!-- Vanilla JS: Smooth horizontal projects navigation & Editorial Scroll Reveal -->
+    <!-- Vanilla JS: Smooth horizontal projects navigation & Editorial Scroll Reveal / Exit -->
     <script>
-        // Progressive Editorial Scroll-Reveal Observer
+        // Progressive Editorial Scroll-Reveal & Reversible Exit Observer
         (function() {
             // Signal to CSS that progressive enhancement is enabled
             document.documentElement.classList.add('js');
@@ -486,16 +486,24 @@
             const revealElements = document.querySelectorAll('.reveal');
 
             if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-                const revealObserver = new IntersectionObserver((entries, observer) => {
+                const revealObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-revealed');
-                            observer.unobserve(entry.target);
+                            entry.target.classList.remove('is-exited-top');
+                        } else {
+                            entry.target.classList.remove('is-revealed');
+                            const rootTop = entry.rootBounds ? entry.rootBounds.top : 0;
+                            if (entry.boundingClientRect.top < rootTop) {
+                                entry.target.classList.add('is-exited-top');
+                            } else {
+                                entry.target.classList.remove('is-exited-top');
+                            }
                         }
                     });
                 }, {
-                    rootMargin: '0px 0px 40px 0px',
-                    threshold: 0.02
+                    rootMargin: '-110px 0px -50px 0px',
+                    threshold: 0.05
                 });
 
                 revealElements.forEach(el => revealObserver.observe(el));
