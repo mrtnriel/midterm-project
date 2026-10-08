@@ -8,56 +8,135 @@
     <meta name="author" content="Gabriel Martin R. Manalo">
     <title>Gabriel Martin R. Manalo &mdash; Portfolio</title>
 
-    <!-- Google Font: Inter -->
+    <!-- Google Fonts: Playfair Display (Serif Display), JetBrains Mono (Technical Mono), Inter (Clean Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=17">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css?v=18">
 </head>
 
 <body>
+
+    <!-- 0. PRE-LOADER (100vh dark overlay, katakana glyph, mono counter) -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <span class="preloader-glyph">マーティン</span>
+            <div class="preloader-meta">
+                <span class="preloader-title">GABRIEL MARTIN R. MANALO</span>
+                <span class="preloader-sub">PORTFOLIO // 2026 &bull; PUP BSIT</span>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-progress" id="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Accessible skip link for keyboard navigation -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- =================================================================
-         SITE HEADER & NAVIGATION
+         SITE HEADER & STICKY NAVIGATION (Light theme, 1px bottom border)
          ================================================================= -->
     <header class="site-header">
-        <div class="container header-row">
-            <a class="wordmark" href="#hero">mrtn.riel</a>
+        <div class="header-inner">
+            <a class="wordmark" href="#hero" aria-label="Go to top">
+                <span>MRTN.RIEL</span>
+                <span class="wordmark-tag">[ 00 ]</span>
+            </a>
 
-            <nav aria-label="Main Navigation">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#stack">Stack</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#certificates">Certificates</a>
-                <a href="#contact">Contact</a>
+            <nav class="desktop-nav" aria-label="Main Navigation">
+                <a href="#about"><span class="nav-num">01</span> About</a>
+                <a href="#projects"><span class="nav-num">02</span> Projects</a>
+                <a href="#stack"><span class="nav-num">03</span> Stack</a>
+                <a href="#experience"><span class="nav-num">04</span> Experience</a>
+                <a href="#education"><span class="nav-num">05</span> Education</a>
+                <a href="#certificates"><span class="nav-num">06</span> Certificates</a>
+                <a href="#contact" class="nav-contact-cell"><span class="nav-num">07</span> Contact &rarr;</a>
             </nav>
 
-            <a class="btn btn-primary header-cta" href="#contact">Get In Touch <span>&rarr;</span></a>
+            <button type="button" class="mobile-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-label">MENU</span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Editorial Drawer (Dark full-screen overlay with large serif links) -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site menu">
+        <div class="mobile-drawer-header">
+            <span class="drawer-title">INDEX // NAVIGATION</span>
+            <button type="button" class="drawer-close" id="menu-close" aria-label="Close navigation menu">[ &times; CLOSE ]</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile Navigation">
+            <a href="#about" class="mobile-nav-link"><span class="drawer-num">01</span> <em>About</em></a>
+            <a href="#projects" class="mobile-nav-link"><span class="drawer-num">02</span> <em>Projects</em></a>
+            <a href="#stack" class="mobile-nav-link"><span class="drawer-num">03</span> <em>Stack</em></a>
+            <a href="#experience" class="mobile-nav-link"><span class="drawer-num">04</span> <em>Experience</em></a>
+            <a href="#education" class="mobile-nav-link"><span class="drawer-num">05</span> <em>Education</em></a>
+            <a href="#certificates" class="mobile-nav-link"><span class="drawer-num">06</span> <em>Certificates</em></a>
+            <a href="#contact" class="mobile-nav-link"><span class="drawer-num">07</span> <em>Contact</em></a>
+        </nav>
+        <div class="mobile-drawer-footer">
+            <span class="drawer-mono">MANILA, PH &bull; PUP BSIT</span>
+            <a href="mailto:martinramirezasdw@gmail.com" class="drawer-email">martinramirezasdw@gmail.com &rarr;</a>
+        </div>
+    </div>
 
     <!-- =================================================================
          MAIN CONTENT WRAPPER
          ================================================================= -->
     <main id="main-content">
 
-        <!-- 1. HERO SECTION -->
-        <section id="hero" class="hero" aria-labelledby="hero-title">
-            <div class="container">
-                <div class="hero-content reveal">
-                    <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
-                    <h1 id="hero-title" class="hero-title">
-                        Hello! I'm Martin
-                    </h1>
-                    <p class="lead">
-                        I am a BS Information Technology student at the Polytechnic University of the Philippines with a core understanding of full-stack software development, systems design, and modern database systems.
+        <!-- 1. HERO SECTION (Editorial Bento Grid + Marquee Ticker) -->
+        <section id="hero" class="hero-bento" aria-labelledby="hero-title">
+            <!-- Top Metadata Strip -->
+            <div class="hero-meta-bar">
+                <div class="hero-meta-cell">
+                    <span class="mono-meta-label">ACADEMICS // DISCIPLINE</span>
+                    <span class="mono-meta-val">PUP MANILA &bull; BS INFORMATION TECHNOLOGY</span>
+                </div>
+                <div class="hero-meta-cell">
+                    <span class="mono-meta-label">FOCUS // ARCHITECTURE</span>
+                    <span class="mono-meta-val">FULL-STACK &bull; DATABASE SYSTEMS</span>
+                </div>
+                <div class="hero-meta-cell hero-meta-cell-right">
+                    <span class="mono-meta-label">STATUS // 2026</span>
+                    <span class="mono-meta-val"><span class="status-indicator"></span>OPEN TO COLLABORATION</span>
+                </div>
+            </div>
+
+            <!-- Giant Letter-Spaced Name Bento Cell -->
+            <div class="hero-display-cell">
+                <div class="hero-watermark-kanji" aria-hidden="true">技術・構築</div>
+                <div class="hero-display-header">
+                    <span class="editorial-stamp">[ FOLIO &bull; NO. 01 ]</span>
+                    <span class="editorial-stamp">MANILA, PH</span>
+                </div>
+                <h1 id="hero-title" class="hero-display-name">
+                    <span class="name-line">G&nbsp;A&nbsp;B&nbsp;R&nbsp;I&nbsp;E&nbsp;L</span>
+                    <span class="name-line name-line-italic">M&nbsp;A&nbsp;R&nbsp;T&nbsp;I&nbsp;N</span>
+                </h1>
+                <div class="hero-display-sub">
+                    <span class="hero-kana">ガブリエル・マーティン・マナロ</span>
+                    <span class="hero-alias">// MRTN.RIEL</span>
+                </div>
+            </div>
+
+            <!-- Bottom Bento Row: Split Editorial Panels -->
+            <div class="hero-bottom-grid">
+                <div class="hero-sub-block hero-sub-block-lead">
+                    <span class="mono-tag-eyebrow">[ STATEMENT &bull; 00 ]</span>
+                    <p class="hero-editorial-lead">
+                        BS Information Technology student at the Polytechnic University of the Philippines with a core understanding of full-stack software development, systems design, and modern database systems.
+                    </p>
+                </div>
+                <div class="hero-sub-block hero-sub-block-action">
+                    <span class="mono-tag-eyebrow">[ DIRECT ACTION ]</span>
+                    <p class="hero-sub-note">
+                        Evaluating software with an architectural perspective: structuring backend logic, relational data, and sharp interfaces.
                     </p>
                     <div class="actions">
                         <a class="btn btn-primary" href="#projects">View Selected Work <span>&rarr;</span></a>
@@ -65,21 +144,76 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Marquee Ticker at the Base -->
+            <div class="ticker" aria-label="Specialization ticker">
+                <div class="ticker__track">
+                    <span>✦ FULL-STACK SYSTEMS</span>
+                    <span>✦ RELATIONAL DATABASE ARCHITECTURE</span>
+                    <span>✦ PUP MANILA</span>
+                    <span>✦ FLASK & MYSQL</span>
+                    <span>✦ REACT & THREE.JS</span>
+                    <span>✦ GABRIEL MARTIN R. MANALO</span>
+                    <span>✦ SOFTWARE DESIGN</span>
+                    <!-- Seamless loop track with aria-hidden -->
+                    <span aria-hidden="true">✦ FULL-STACK SYSTEMS</span>
+                    <span aria-hidden="true">✦ RELATIONAL DATABASE ARCHITECTURE</span>
+                    <span aria-hidden="true">✦ PUP MANILA</span>
+                    <span aria-hidden="true">✦ FLASK & MYSQL</span>
+                    <span aria-hidden="true">✦ REACT & THREE.JS</span>
+                    <span aria-hidden="true">✦ GABRIEL MARTIN R. MANALO</span>
+                    <span aria-hidden="true">✦ SOFTWARE DESIGN</span>
+                </div>
+            </div>
         </section>
 
-        <!-- 2. ABOUT SECTION -->
-        <section id="about" class="section" aria-labelledby="about-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">01 / Background</span>
-                    <h2 id="about-title">About</h2>
+        <!-- 2. ABOUT SECTION (01 Profile: 4/8 Column Split with 1px Divider) -->
+        <section id="about" class="section section-profile" aria-labelledby="about-title">
+            <div class="section-header-band">
+                <span class="mono-section-index">[ 01 ] BACKGROUND &bull; 経歴</span>
+                <h2 id="about-title" class="reveal"><span>About</span></h2>
+            </div>
+
+            <div class="profile-split-grid">
+                <!-- 4fr Column: Portrait & Subject Metadata -->
+                <div class="profile-portrait-col">
+                    <div class="profile-image-frame">
+                        <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="profile-image" width="1090" height="1596" loading="lazy" decoding="async">
+                        <div class="portrait-caption-strip">
+                            <span class="mono-meta-val">FIG 1.0 &bull; PORTRAIT</span>
+                            <span class="mono-meta-val">MANILA, PH</span>
+                        </div>
+                    </div>
+                    <div class="profile-meta-table">
+                        <div class="meta-row">
+                            <span class="meta-key">NAME</span>
+                            <span class="meta-val">Gabriel Martin R. Manalo</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-key">ROLE</span>
+                            <span class="meta-val">Full-Stack Dev &amp; Systems</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-key">EDUCATION</span>
+                            <span class="meta-val">BSIT &bull; PUP Manila</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-key">LOCATION</span>
+                            <span class="meta-val">Manila, Philippines</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="about-grid">
-                    <div class="about-narrative reveal">
-                        <p class="narrative-lead">
+                <!-- 8fr Column: Greeting, Narrative & Architectural Perspective -->
+                <div class="profile-content-col">
+                    <div class="profile-greeting-wrap reveal">
+                        <span class="mono-tag-eyebrow">[ EDITORIAL NARRATIVE ]</span>
+                        <h3 class="profile-greeting">
                             I approach IT not simply as writing code, but as designing effective solutions to complex technical and architectural problems.
-                        </p>
+                        </h3>
+                    </div>
+
+                    <div class="profile-body-text">
                         <p>
                             I'm Gabriel Martin R. Manalo, a BS Information Technology student with a core understanding of full-stack software development and modern database systems.
                         </p>
@@ -91,330 +225,369 @@
                         </p>
                     </div>
 
-                    <div class="about-media reveal reveal-stagger-1">
-                        <div class="about-portrait-wrapper">
-                            <div class="about-image-frame">
-                                <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="about-image" width="1090" height="1596" loading="lazy" decoding="async">
-                            </div>
+                    <div class="profile-manifesto-band">
+                        <div class="manifesto-item">
+                            <span class="manifesto-num">(01)</span>
+                            <span class="manifesto-title">Robust Backend</span>
+                            <p class="manifesto-desc">Structuring server logic, API endpoints, and clean data contracts.</p>
+                        </div>
+                        <div class="manifesto-item">
+                            <span class="manifesto-num">(02)</span>
+                            <span class="manifesto-title">Relational Logic</span>
+                            <p class="manifesto-desc">Designing normalized schemas, indexes, and efficient queries.</p>
+                        </div>
+                        <div class="manifesto-item">
+                            <span class="manifesto-num">(03)</span>
+                            <span class="manifesto-title">Sharp Usability</span>
+                            <p class="manifesto-desc">Building accessible, high-contrast, performant user interfaces.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PROJECTS SECTION -->
-        <section id="projects" class="section" aria-labelledby="projects-title">
-            <div class="container">
-                <div class="projects-header-row reveal">
-                    <div class="section-heading">
-                        <span class="section-index">02 / Selected Works</span>
-                        <h2 id="projects-title">Projects</h2>
-                    </div>
-                    <div class="projects-nav-controls" aria-label="Projects navigation controls">
-                        <button type="button" class="projects-nav-btn" id="projects-prev" aria-label="Previous project">&larr;</button>
-                        <button type="button" class="projects-nav-btn" id="projects-next" aria-label="Next project">&rarr;</button>
-                    </div>
+        <!-- 3. PROJECTS SECTION (02 Works: Full-width list rows with hover preview) -->
+        <section id="projects" class="section section-projects" aria-labelledby="projects-title">
+            <div class="section-header-band">
+                <div class="header-band-left">
+                    <span class="mono-section-index">[ 02 ] SELECTED WORKS &bull; 作品</span>
+                    <h2 id="projects-title" class="reveal"><span>Projects</span></h2>
+                </div>
+                <div class="header-band-right">
+                    <span class="editorial-stamp">[ 04 WORKS RECORDED ]</span>
                 </div>
             </div>
 
-            <div class="projects-container">
-                <div class="projects-grid">
-                    <!-- Project Card 01 -->
-                    <article class="project-card reveal reveal-stagger-1">
-                        <div class="project-card-inner">
-                            <div class="project-card-visual">
-                                <img src="assets/proj/SALN System.webp" alt="SALN Submission Portal interface screenshot" loading="lazy">
-                            </div>
+            <!-- Floating Preview Window (Desktop cursor follower) -->
+            <div id="project-hover-preview" class="project-hover-preview" aria-hidden="true">
+                <img src="" alt="" id="project-hover-img">
+            </div>
 
-                            <div class="project-card-meta">
-                                <span class="project-num">01</span>
-                                <span class="project-meta-separator" aria-hidden="true">&bull;</span>
-                                <span class="project-tag">Full-Stack Web Application</span>
-                            </div>
+            <div class="projects-list">
+                <!-- Project Row 01 -->
+                <article class="project-row" data-preview="assets/proj/SALN System.webp">
+                    <div class="project-row-lead">
+                        <span class="proj-mono-idx">(01)</span>
+                        <span class="proj-tag">[ FULL-STACK WEB APPLICATION ]</span>
+                    </div>
 
-                            <h3 class="project-title">SALN Submission Portal</h3>
+                    <div class="proj-inline-thumb">
+                        <img src="assets/proj/SALN System.webp" alt="SALN Submission Portal interface screenshot" loading="lazy">
+                    </div>
 
-                            <p class="project-desc">
-                                Developed a secure full-stack web application designed for government ID data collection, record management, and automated submission processes.
-                            </p>
-
-                            <p class="project-tech">Python (Flask) &bull; MySQL &bull; JavaScript &bull; HTML5 &bull; CSS3</p>
+                    <div class="project-row-main">
+                        <h3 class="proj-row-title">SALN Submission Portal</h3>
+                        <p class="proj-row-desc">
+                            Developed a secure full-stack web application designed for government ID data collection, record management, and automated submission processes.
+                        </p>
+                        <div class="proj-row-tech">
+                            <span>Python (Flask)</span>
+                            <span>MySQL</span>
+                            <span>JavaScript</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
                         </div>
+                    </div>
 
-                        <div class="project-card-action">
-                            <a href="https://github.com/mrtnriel" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Source Code for SALN Submission Portal">
-                                <span>Source Code</span>
-                                <span class="card-arrow" aria-hidden="true">&rarr;</span>
-                            </a>
+                    <div class="project-row-link-col">
+                        <a href="https://github.com/mrtnriel" target="_blank" rel="noopener noreferrer" class="proj-action-link" aria-label="Source Code for SALN Submission Portal">
+                            <span>Source Code</span>
+                            <span class="link-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project Row 02 -->
+                <article class="project-row" data-preview="assets/proj/figma.png">
+                    <div class="project-row-lead">
+                        <span class="proj-mono-idx">(02)</span>
+                        <span class="proj-tag">[ UI/UX &amp; HCI ARCHITECTURE ]</span>
+                    </div>
+
+                    <div class="proj-inline-thumb">
+                        <img src="assets/proj/figma.png" alt="PUP Room Booking Prototype wireframe" loading="lazy">
+                    </div>
+
+                    <div class="project-row-main">
+                        <h3 class="proj-row-title">PUP Room Booking Prototype</h3>
+                        <p class="proj-row-desc">
+                            Co-created low-fidelity and high-fidelity wireframes and visual mapping systems utilizing Human-Computer Interaction (HCI) principles for academic space management.
+                        </p>
+                        <div class="proj-row-tech">
+                            <span>Figma</span>
+                            <span>User Research</span>
+                            <span>Wireframing</span>
+                            <span>Usability Testing</span>
                         </div>
-                    </article>
+                    </div>
 
-                    <!-- Project Card 02 -->
-                    <article class="project-card reveal reveal-stagger-2">
-                        <div class="project-card-inner">
-                            <div class="project-card-visual">
-                                <img src="assets/proj/figma.png" alt="PUPWESTO" loading="lazy">
-                            </div>
+                    <div class="project-row-link-col">
+                        <a href="https://www.figma.com/proto/gqwc5tSAWlLeSLLpxWD74U/High-Fidelity-Wireframe--Group-4-?node-id=273-3882&amp;p=f&amp;viewport=97%2C97%2C0.21&amp;t=aOiHw4stNh1wiOF5-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=273%3A3882&amp;page-id=251%3A2134" target="_blank" rel="noopener noreferrer" class="proj-action-link" aria-label="View Prototype for PUP Room Booking Prototype">
+                            <span>View Prototype</span>
+                            <span class="link-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
 
-                            <div class="project-card-meta">
-                                <span class="project-num">02</span>
-                                <span class="project-meta-separator" aria-hidden="true">&bull;</span>
-                                <span class="project-tag">UI/UX & HCI Architecture</span>
-                            </div>
+                <!-- Project Row 03 -->
+                <article class="project-row" data-preview="assets/proj/koso-preview.webp">
+                    <div class="project-row-lead">
+                        <span class="proj-mono-idx">(03)</span>
+                        <span class="proj-tag">[ FRONT-END DEVELOPMENT ]</span>
+                    </div>
 
-                            <h3 class="project-title">PUP Room Booking Prototype</h3>
+                    <div class="proj-inline-thumb">
+                        <img src="assets/proj/koso-preview.webp" alt="Koso Lifewear e-commerce preview" loading="lazy">
+                    </div>
 
-                            <p class="project-desc">
-                                Co-created low-fidelity and high-fidelity wireframes and visual mapping systems utilizing Human-Computer Interaction (HCI) principles for academic space management.
-                            </p>
-
-                            <p class="project-tech">Figma &bull; User Research &bull; Wireframing &bull; Usability Testing</p>
+                    <div class="project-row-main">
+                        <h3 class="proj-row-title">Koso Lifewear</h3>
+                        <p class="proj-row-desc">
+                            A minimalist fashion e-commerce app built with React and Tailwind CSS to practice accessible UI design, spring motion physics, and responsive layouts, developed with the help of AI-assisted coding using Antigravity.
+                        </p>
+                        <div class="proj-row-tech">
+                            <span>Antigravity</span>
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Tailwind CSS</span>
+                            <span>TypeScript</span>
                         </div>
+                    </div>
 
-                        <div class="project-card-action">
-                            <a href="https://www.figma.com/proto/gqwc5tSAWlLeSLLpxWD74U/High-Fidelity-Wireframe--Group-4-?node-id=273-3882&p=f&viewport=97%2C97%2C0.21&t=aOiHw4stNh1wiOF5-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=273%3A3882&page-id=251%3A2134" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="View Prototype for PUP Room Booking Prototype">
-                                <span>View Prototype</span>
-                                <span class="card-arrow" aria-hidden="true">&rarr;</span>
-                            </a>
+                    <div class="project-row-link-col">
+                        <a href="https://koso-lifewear.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-action-link" aria-label="Live Demo for Koso Lifewear">
+                            <span>Live Demo</span>
+                            <span class="link-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project Row 04 -->
+                <article class="project-row" data-preview="assets/proj/axis-studio.webp">
+                    <div class="project-row-lead">
+                        <span class="proj-mono-idx">(04)</span>
+                        <span class="proj-tag">[ 3D &amp; FRONT-END ]</span>
+                    </div>
+
+                    <div class="proj-inline-thumb">
+                        <img src="assets/proj/axis-studio.webp" alt="Axis Studio 3D customizer preview" loading="lazy">
+                    </div>
+
+                    <div class="project-row-main">
+                        <h3 class="proj-row-title">Axis Studio</h3>
+                        <p class="proj-row-desc">
+                            Interactive 3D mechanical keyboard customizer and storefront built with React 19, Three.js, and Tailwind CSS v4, developed with the help of AI-assisted coding using Google Antigravity.
+                        </p>
+                        <div class="proj-row-tech">
+                            <span>Antigravity</span>
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Three.js</span>
+                            <span>Web-Audio API</span>
+                            <span>Tailwind CSS</span>
                         </div>
-                    </article>
+                    </div>
 
-                    <!-- Project Card 03 -->
-                    <article class="project-card reveal reveal-stagger-3">
-                        <div class="project-card-inner">
-                            <div class="project-card-visual">
-                                <img src="assets/proj/koso-preview.webp" alt="koso-lifewear" loading="lazy">
-                            </div>
-
-                            <div class="project-card-meta">
-                                <span class="project-num">03</span>
-                                <span class="project-meta-separator" aria-hidden="true">&bull;</span>
-                                <span class="project-tag">Front-End Development</span>
-                            </div>
-
-                            <h3 class="project-title">Koso Lifewear</h3>
-
-                            <p class="project-desc">
-                                A minimalist fashion e-commerce app built with React and Tailwind CSS to practice accessible UI design, spring motion physics, and responsive layouts, developed with the help of AI-assisted coding using Antigravity.
-                            </p>
-
-                            <p class="project-tech">Antigravity &bull; React &bull; Vite &bull; Tailwind CSS &bull; TypeScript </p>
-                        </div>
-
-                        <div class="project-card-action">
-                            <a href="https://koso-lifewear.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Documentation for Enterprise Network Topology">
-                                <span>Live Demo</span>
-                                <span class="card-arrow" aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project Card 04 -->
-                    <article class="project-card reveal reveal-stagger-3">
-                        <div class="project-card-inner">
-                            <div class="project-card-visual">
-                                <img src="assets/proj/axis-studio.webp" alt="axis-studio" loading="lazy">
-                            </div>
-
-                            <div class="project-card-meta">
-                                <span class="project-num">04</span>
-                                <span class="project-meta-separator" aria-hidden="true">&bull;</span>
-                                <span class="project-tag">Front-End Development</span>
-                            </div>
-
-                            <h3 class="project-title">Axis Studio</h3>
-
-                            <p class="project-desc">
-                                Axis Studio is an interactive 3D mechanical keyboard customizer and storefront built with React 19, Three.js, and Tailwind CSS v4, developed with the help of AI-assisted coding using Google Antigravity.
-                            </p>
-
-                            <p class="project-tech">Antigravity &bull; React &bull; Vite &bull; Three.js &bull; Web-Audio API &bull; Tailwind CSS</p>
-                        </div>
-
-                        <div class="project-card-action">
-                            <a href="https://axis-studio-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-card-link" aria-label="Documentation for Enterprise Network Topology">
-                                <span>Live Demo</span>
-                                <span class="card-arrow" aria-hidden="true">&rarr;</span>
-                            </a>
-                        </div>
-                    </article>
-
-
-
-                </div>
+                    <div class="project-row-link-col">
+                        <a href="https://axis-studio-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-action-link" aria-label="Live Demo for Axis Studio">
+                            <span>Live Demo</span>
+                            <span class="link-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- 4. TECH STACK SECTION -->
-        <section id="stack" class="section" aria-labelledby="stack-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">03 / Tooling</span>
-                    <h2 id="stack-title">Stack</h2>
+        <!-- 4. TECH STACK & PHILOSOPHY (03 Dark Band Visual Break: Quote + Stack Grid) -->
+        <section id="stack" class="section section-dark-band" aria-labelledby="stack-title">
+            <!-- Part 1: Large Centered Philosophy Quote -->
+            <div class="quote-block">
+                <span class="quote-stamp">[ 03 &bull; PHILOSOPHY // 理念 ]</span>
+                <blockquote class="quote-text reveal">
+                    <span>&ldquo;I approach IT not simply as writing code, but as designing effective solutions to complex technical and architectural problems.&rdquo;</span>
+                </blockquote>
+                <cite class="quote-cite">&mdash; GABRIEL MARTIN R. MANALO // SYSTEMS &amp; SOFTWARE</cite>
+            </div>
+
+            <!-- Part 2: Dark Editorial Stack Grid -->
+            <div class="stack-inner-wrap">
+                <div class="stack-header-strip">
+                    <span class="mono-section-index">[ TOOLING &bull; 技術スタック ]</span>
+                    <h2 id="stack-title" class="reveal"><span>Tech Stack</span></h2>
                 </div>
 
                 <div class="stack-grid">
-                    
-                    <div class="stack-col reveal reveal-stagger-1">
-                        <h3 class="stack-category">Front-End</h3>
+                    <div class="stack-col">
+                        <div class="stack-col-head">
+                            <span class="stack-col-num">(01)</span>
+                            <h3 class="stack-category">Front-End</h3>
+                        </div>
                         <ul class="stack-items">
-                            <li>HTML5 Semantic Markup</li>
-                            <li>CSS3 (Flexbox & Grid)</li>
-                            <li>Responsive Web Systems</li>
+                            <li><span>01</span> HTML5 Semantic Markup</li>
+                            <li><span>02</span> CSS3 (Flexbox &amp; Grid)</li>
+                            <li><span>03</span> Responsive Web Systems</li>
                         </ul>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-2">
-                        <h3 class="stack-category">Back-End</h3>
+                    <div class="stack-col">
+                        <div class="stack-col-head">
+                            <span class="stack-col-num">(02)</span>
+                            <h3 class="stack-category">Back-End</h3>
+                        </div>
                         <ul class="stack-items">
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>C++</li>
-                            <li>JavaScript</li>
-                            <li>COBOL</li>
-                            <li>R</li>
+                            <li><span>01</span> Python</li>
+                            <li><span>02</span> Java</li>
+                            <li><span>03</span> C++</li>
+                            <li><span>04</span> JavaScript</li>
+                            <li><span>05</span> COBOL</li>
+                            <li><span>06</span> R</li>
                         </ul>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-3">
-                        <h3 class="stack-category">Databases</h3>
+                    <div class="stack-col">
+                        <div class="stack-col-head">
+                            <span class="stack-col-num">(03)</span>
+                            <h3 class="stack-category">Databases</h3>
+                        </div>
                         <ul class="stack-items">
-                            <li>MySQL</li>
-                            <li>PostgreSQL</li>
-                            <li>TiDB Cloud</li>
+                            <li><span>01</span> MySQL</li>
+                            <li><span>02</span> PostgreSQL</li>
+                            <li><span>03</span> TiDB Cloud</li>
                         </ul>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-4">
-                        <h3 class="stack-category">Infrastructure & Tools</h3>
+                    <div class="stack-col">
+                        <div class="stack-col-head">
+                            <span class="stack-col-num">(04)</span>
+                            <h3 class="stack-category">Infrastructure &amp; Tools</h3>
+                        </div>
                         <ul class="stack-items">
-                            <li>Git & GitHub</li>
-                            <li>Vercel</li>
-                            <li>Cisco Packet Tracer</li>
-                            <li>Figma</li>
+                            <li><span>01</span> Git &amp; GitHub</li>
+                            <li><span>02</span> Vercel</li>
+                            <li><span>03</span> Cisco Packet Tracer</li>
+                            <li><span>04</span> Figma</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. EXPERIENCE SECTION -->
-        <section id="experience" class="section" aria-labelledby="experience-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">04 / History</span>
-                    <h2 id="experience-title">Experience</h2>
-                </div>
+        <!-- 5. EXPERIENCE SECTION (04 History: Light Theme) -->
+        <section id="experience" class="section section-experience" aria-labelledby="experience-title">
+            <div class="section-header-band">
+                <span class="mono-section-index">[ 04 ] HISTORY &bull; 実務経験</span>
+                <h2 id="experience-title" class="reveal"><span>Experience</span></h2>
+            </div>
 
-                <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-1">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">October 2024 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Associate Lead for the Web Development Department - Skill Builder Department</h3>
-                            <p class="timeline-org">AWS Cloud Club PUP</p>
-                            <ul class="timeline-details">
-                                <li>Develop practical skills in building websites and web applications through hands-on projects and workshops.</li>
-                                <li>Work with front-end and back-end technologies, with a primary focus on Backend Development.</li>
-                                <li>Strengthen expertise in backend engineering, including server-side logic, API development, and database management.</li>
-                                <li>Collaborate with team members in developing responsive, accessible, and user-centric web applications.</li>
-                                <li>Support the planning and execution of technical activities and workshops to promote continuous learning and skill development.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+            <div class="timeline-container">
+                <!-- Timeline Row 01 -->
+                <article class="timeline-row reveal">
+                    <div class="timeline-meta">
+                        <time class="timeline-date">OCTOBER 2024 &ndash; PRESENT</time>
+                        <span class="timeline-badge">[ ORGANIZATION ]</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">Associate Lead for Web Development</h3>
+                        <p class="timeline-org">AWS Cloud Club PUP &bull; Skill Builder Department</p>
+                        <ul class="timeline-details">
+                            <li>Develop practical skills in building websites and web applications through hands-on projects and workshops.</li>
+                            <li>Work with front-end and back-end technologies, with a primary focus on Backend Development.</li>
+                            <li>Strengthen expertise in backend engineering, including server-side logic, API development, and database management.</li>
+                            <li>Collaborate with team members in developing responsive, accessible, and user-centric web applications.</li>
+                            <li>Support the planning and execution of technical activities and workshops to promote continuous learning.</li>
+                        </ul>
+                    </div>
+                </article>
 
-                <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-2">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">September 2024 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Membership Lead - Relations Department</h3>
-                            <p class="timeline-org">Cisco NetConnect PUP</p>
-                            <ul class="timeline-details">
-                                <li>Oversee membership growth and onboarding initiatives of Cisco NetConnect PUP – Manila.</li>
-                                <li>Develop and implement recruitment strategies to attract and engage potential members.</li>
-                                <li>Set recruitment goals and identify effective channels for reaching and connecting with students.</li>
-                                <li>Conceptualize and organize engaging activities during events to encourage member participation and foster interaction.</li>
-                                <li>Plan and coordinate onboarding activities to provide new members with a smooth introduction to the organization.</li>
-                                <li>Monitor membership growth and support initiatives that strengthen member engagement and community involvement.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+                <!-- Timeline Row 02 -->
+                <article class="timeline-row reveal">
+                    <div class="timeline-meta">
+                        <time class="timeline-date">SEPTEMBER 2024 &ndash; PRESENT</time>
+                        <span class="timeline-badge">[ ORGANIZATION ]</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">Membership Lead</h3>
+                        <p class="timeline-org">Cisco NetConnect PUP &bull; Relations Department</p>
+                        <ul class="timeline-details">
+                            <li>Oversee membership growth and onboarding initiatives of Cisco NetConnect PUP &ndash; Manila.</li>
+                            <li>Develop and implement recruitment strategies to attract and engage potential members.</li>
+                            <li>Set recruitment goals and identify effective channels for reaching and connecting with students.</li>
+                            <li>Conceptualize and organize engaging activities during events to encourage member participation.</li>
+                            <li>Plan and coordinate onboarding activities to provide new members with a smooth introduction to the organization.</li>
+                        </ul>
+                    </div>
+                </article>
 
-                <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-3">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">August 2024 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Marketing Communications Officer</h3>
-                            <p class="timeline-org">Microsoft Campus Club PUP</p>
-                            <ul class="timeline-details">
-                                <li>Manage and publish posts on the organization's official social media pages.</li>
-                                <li>Assist in documenting events through photo and video recording.</li>
-                                <li>Create and edit reels and other engaging content for the organization's social media platforms.</li>
-                                <li>Coordinate with members and other departments for content and event-related activities.</li>
-                                <li>Communicate with team members to ensure smooth coordination and execution of activities.</li>
-                                <li>Support promotional efforts and contribute to increasing community engagement through digital content.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-
+                <!-- Timeline Row 03 -->
+                <article class="timeline-row reveal">
+                    <div class="timeline-meta">
+                        <time class="timeline-date">AUGUST 2024 &ndash; PRESENT</time>
+                        <span class="timeline-badge">[ ORGANIZATION ]</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">Marketing Communications Officer</h3>
+                        <p class="timeline-org">Microsoft Campus Club PUP</p>
+                        <ul class="timeline-details">
+                            <li>Manage and publish posts on the organization's official social media pages.</li>
+                            <li>Assist in documenting events through photo and video recording.</li>
+                            <li>Create and edit reels and other engaging content for the organization's social media platforms.</li>
+                            <li>Coordinate with members and other departments for content and event-related activities.</li>
+                            <li>Support promotional efforts and contribute to increasing community engagement through digital content.</li>
+                        </ul>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- 6. EDUCATION SECTION -->
-        <section id="education" class="section" aria-labelledby="education-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">05 / Academics</span>
-                    <h2 id="education-title">Education</h2>
-                </div>
+        <!-- 6. EDUCATION SECTION (05 Academics: Light Theme) -->
+        <section id="education" class="section section-education" aria-labelledby="education-title">
+            <div class="section-header-band">
+                <span class="mono-section-index">[ 05 ] ACADEMICS &bull; 学歴</span>
+                <h2 id="education-title" class="reveal"><span>Education</span></h2>
+            </div>
 
-                <div class="education-block">
-                    <article class="education-item reveal">
-                        <div class="education-meta">
-                            <p class="timeline-date">October 2024 &ndash; Present</p>
-                        </div>
-                        <div class="education-body">
-                            <h3 class="degree-name">Bachelor of Science in Information Technology</h3>
-                            <p class="institution-name">Polytechnic University of the Philippines</p>
-                            <p class="education-summary">
-                                Focus on software engineering methodologies, relational and distributed database management, object-oriented design, web application development, and computer networking.
-                            </p>
-                        </div>
-                    </article>
-                </div>
+            <div class="timeline-container">
+                <article class="timeline-row reveal">
+                    <div class="timeline-meta">
+                        <time class="timeline-date">OCTOBER 2024 &ndash; PRESENT</time>
+                        <span class="timeline-badge">[ UNIVERSITY ]</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="degree-name">Bachelor of Science in Information Technology</h3>
+                        <p class="institution-name">Polytechnic University of the Philippines &bull; Sta. Mesa, Manila</p>
+                        <p class="education-summary">
+                            Rigorous academic focus on software engineering methodologies, relational and distributed database management, object-oriented design, web application development, and computer networking architectures.
+                        </p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- 7. CERTIFICATES SECTION -->
-        <section id="certificates" class="section" aria-labelledby="certificates-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">06 / Credentials</span>
-                    <h2 id="certificates-title">Certificates</h2>
-                </div>
+        <!-- 7. CERTIFICATES SECTION (06 Credentials: Light Theme Gallery) -->
+        <section id="certificates" class="section section-certificates" aria-labelledby="certificates-title">
+            <div class="section-header-band">
+                <span class="mono-section-index">[ 06 ] CREDENTIALS &bull; 資格認定</span>
+                <h2 id="certificates-title" class="reveal"><span>Certificates</span></h2>
+            </div>
 
-                <div class="certificates-grid">
-                    <!-- Certificate Entry 01: DataCamp SQL -->
-                    <article class="certificate-entry reveal reveal-stagger-1">
+            <div class="certificates-editorial-grid">
+                <!-- Certificate Entry 01: DataCamp SQL -->
+                <article class="certificate-entry reveal">
+                    <div class="cert-visual-frame">
                         <a href="assets/certificates/SQL certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-visual" aria-label="View Statement of Accomplishment for Introduction to SQL">
                             <img src="assets/certificates/Introduction to SQL - DataCamp.webp" alt="DataCamp Introduction to SQL Statement of Accomplishment for Gabriel Martin Manalo" loading="lazy">
                         </a>
+                        <div class="cert-badge-overlay">[ VERIFIED ACCREDITATION ]</div>
+                    </div>
 
-                        <span class="cert-year">2026</span>
+                    <div class="cert-info">
+                        <div class="cert-meta-row">
+                            <span class="cert-year">ISSUE // 2026</span>
+                            <span class="cert-id">ID: #46,431,840</span>
+                        </div>
                         <h3 class="cert-title">Introduction to SQL</h3>
                         <p class="cert-issuer">DataCamp &bull; Jonathan Cornelissen, CEO</p>
-                        <p class="cert-note">Relational database querying, filtering, aggregation, table joins, and SQL syntax foundations. Credential ID: #46,431,840 (2 Hours).</p>
+                        <p class="cert-note">Relational database querying, filtering, aggregation, table joins, and SQL syntax foundations (2 Hours Curriculum).</p>
                         
                         <div class="cert-action">
                             <a href="assets/certificates/SQL certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-link" aria-label="View full Statement of Accomplishment for Introduction to SQL">
@@ -422,160 +595,225 @@
                                 <span class="cert-arrow" aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
-                    </article>
-                </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- 8. CONTACT SECTION -->
-        <section id="contact" class="section" aria-labelledby="contact-title">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <span class="section-index">07 / Inquiries</span>
-                    <h2 id="contact-title">Contact</h2>
-                </div>
+        <!-- 8. CONTACT SECTION (07 Dark Band Finale: Terminal-Feel Inquiries & Link Grid) -->
+        <section id="contact" class="section section-dark-contact" aria-labelledby="contact-title">
+            <div class="section-header-band">
+                <span class="mono-section-index">[ 07 ] INQUIRIES &bull; お問い合わせ</span>
+                <h2 id="contact-title" class="reveal"><span>Contact</span></h2>
+            </div>
 
-                <div class="contact-grid">
-                    <div class="contact-info reveal">
-                        <p class="lead">
-                        Have a project in mind, an internship opportunity, or want to discuss software systems and web development? Drop me a line anytime.
-                        </p>
+            <div class="contact-terminal-grid">
+                <!-- Left Column: Terminal Bio & Inverted Hover Link Grid -->
+                <div class="contact-terminal-info reveal">
+                    <h3 class="contact-display-greeting">
+                        Have a project in mind, an internship opportunity, or want to discuss software systems?
+                    </h3>
+                    <p class="contact-lead-desc">
+                        I am actively open to discussing software architecture, internship positions, and collaborative web engineering opportunities.
+                    </p>
 
-                        <div class="contact-channels">
-                            <div class="channel-item">
-                                <span class="channel-label">Email</span>
-                                <a href="mailto:martinramirezasdw@gmail.com" class="channel-value">martinramirezasdw@gmail.com</a>
-                            </div>
-                            <div class="channel-item">
-                                <span class="channel-label">GitHub</span>
-                                <a href="https://github.com/mrtnriel" target="_blank" rel="noopener noreferrer" class="channel-value">github.com/mrtnriel <span>&rarr;</span></a>
-                            </div>
-                            <div class="channel-item">
-                                <span class="channel-label">LinkedIn</span>
-                                <a href="https://www.linkedin.com/in/gabriel-martin-manalo-411a0134a/" target="_blank" rel="noopener noreferrer" class="channel-value">Gabriel Martin Manalo <span>&rarr;</span></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Interactive Link Grid (Cells with 1px border; hover inverts to paper fill & ink text) -->
+                    <div class="contact-link-grid">
+                        <a href="mailto:martinramirezasdw@gmail.com" class="link-grid-cell">
+                            <span class="cell-label">[ 01 &bull; DIRECT EMAIL ]</span>
+                            <span class="cell-val">martinramirezasdw@gmail.com</span>
+                            <span class="cell-arrow">&rarr;</span>
+                        </a>
 
-                    <div class="contact-card reveal">
-                        <div class="card-header">
-                            <span class="card-label">Send a Message</span>
-                        </div>
+                        <a href="https://github.com/mrtnriel" target="_blank" rel="noopener noreferrer" class="link-grid-cell">
+                            <span class="cell-label">[ 02 &bull; GITHUB REPOSITORY ]</span>
+                            <span class="cell-val">github.com/mrtnriel</span>
+                            <span class="cell-arrow">&nearr;</span>
+                        </a>
 
-                        <form action="#" method="POST" class="editorial-form">
-                            <div class="field-group">
-                                <label for="form-name">Name</label>
-                                <input type="text" id="form-name" name="name" placeholder="Your full name" required autocomplete="name">
-                            </div>
-
-                            <div class="field-group">
-                                <label for="form-email">Email</label>
-                                <input type="email" id="form-email" name="email" placeholder="you@domain.com" required autocomplete="email">
-                            </div>
-
-                            <div class="field-group">
-                                <label for="form-subject">Subject</label>
-                                <input type="text" id="form-subject" name="subject" placeholder="Project inquiry or message topic" required>
-                            </div>
-
-                            <div class="field-group">
-                                <label for="form-message">Message</label>
-                                <textarea id="form-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary form-submit">Send Message <span>&rarr;</span></button>
-                        </form>
+                        <a href="https://www.linkedin.com/in/gabriel-martin-manalo-411a0134a/" target="_blank" rel="noopener noreferrer" class="link-grid-cell">
+                            <span class="cell-label">[ 03 &bull; PROFESSIONAL LINKEDIN ]</span>
+                            <span class="cell-val">Gabriel Martin Manalo</span>
+                            <span class="cell-arrow">&nearr;</span>
+                        </a>
                     </div>
                 </div>
+
+                <!-- Right Column: Terminal Contact Form -->
+                <div class="contact-terminal-form-card reveal">
+                    <div class="terminal-card-header">
+                        <span class="terminal-card-label">// SEND A MESSAGE &bull; TERMINAL FORM</span>
+                    </div>
+
+                    <form action="#" method="POST" class="editorial-form">
+                        <div class="field-group">
+                            <label for="form-name">[ 01 ] YOUR NAME</label>
+                            <input type="text" id="form-name" name="name" placeholder="Full name or company" required autocomplete="name">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="form-email">[ 02 ] EMAIL ADDRESS</label>
+                            <input type="email" id="form-email" name="email" placeholder="you@domain.com" required autocomplete="email">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="form-subject">[ 03 ] SUBJECT TOPIC</label>
+                            <input type="text" id="form-subject" name="subject" placeholder="Project inquiry, internship, or collaboration" required>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="form-message">[ 04 ] MESSAGE BODY</label>
+                            <textarea id="form-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-invert form-submit">
+                            <span>Send Message</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Giant Footer Name (Cropped by the bottom edge) -->
+            <div class="giant-footer-name-wrap" aria-hidden="true">
+                <span class="giant-footer-name">GABRIEL&nbsp;MARTIN</span>
             </div>
         </section>
 
     </main>
 
     <!-- =================================================================
-         SITE FOOTER
+         SITE FOOTER (Dark Theme Bar)
          ================================================================= -->
     <footer class="site-footer">
-        <div class="container footer-row">
-            <span class="wordmark">GABRIEL MARTIN</span>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-wordmark">MRTN.RIEL</span>
+                <span class="footer-tag">[ PUP MANILA // BSIT 2026 ]</span>
+            </div>
             <p class="copyright">&copy; <time datetime="2026">2026</time> Gabriel Martin R. Manalo. All rights reserved.</p>
-            <a href="#hero" class="back-link">Back to top <span>&uarr;</span></a>
+            <a href="#hero" class="back-link">
+                <span>BACK TO TOP</span>
+                <span>&uarr;</span>
+            </a>
         </div>
     </footer>
 
-    <!-- Vanilla JS: Smooth horizontal projects navigation & Editorial Scroll Reveal / Exit -->
+    <!-- Vanilla JS: Pre-loader, Masked Scroll Reveals, Project Hover Preview & Mobile Menu -->
     <script>
-        // Progressive Editorial Scroll-Reveal & Reversible Exit Observer
         (function() {
-            // Signal to CSS that progressive enhancement is enabled
+            // Signal to CSS that JavaScript is active
             document.documentElement.classList.add('js');
 
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const revealElements = document.querySelectorAll('.reveal');
 
+            // 1. PRE-LOADER CONTROLLER (~1.4s duration, instant cut if reduced motion)
+            const preloader = document.getElementById('preloader');
+            const preloaderProgress = document.getElementById('preloader-progress');
+            
+            if (preloader) {
+                if (prefersReducedMotion) {
+                    preloader.classList.add('is-hidden');
+                    preloader.style.display = 'none';
+                } else {
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += 8;
+                        if (preloaderProgress) {
+                            preloaderProgress.style.width = Math.min(progress, 100) + '%';
+                        }
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            setTimeout(() => {
+                                preloader.classList.add('is-hidden');
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                }, 400);
+                            }, 200);
+                        }
+                    }, 80);
+                }
+            }
+
+            // 2. MASKED SCROLL REVEAL OBSERVER (skill recipe: .reveal > span slide up)
+            const revealElements = document.querySelectorAll('.reveal');
             if (!prefersReducedMotion && 'IntersectionObserver' in window) {
                 const revealObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('is-revealed');
-                            entry.target.classList.remove('is-exited-top');
-                        } else {
-                            entry.target.classList.remove('is-revealed');
-                            const rootTop = entry.rootBounds ? entry.rootBounds.top : 0;
-                            if (entry.boundingClientRect.top < rootTop) {
-                                entry.target.classList.add('is-exited-top');
-                            } else {
-                                entry.target.classList.remove('is-exited-top');
-                            }
+                            entry.target.classList.add('in');
+                            revealObserver.unobserve(entry.target);
                         }
                     });
-                }, {
-                    rootMargin: '-110px 0px -50px 0px',
-                    threshold: 0.05
-                });
+                }, { threshold: 0.15 });
 
                 revealElements.forEach(el => revealObserver.observe(el));
             } else {
-                // If reduced motion is preferred or IntersectionObserver is unsupported, reveal immediately
-                revealElements.forEach(el => el.classList.add('is-revealed'));
+                revealElements.forEach(el => el.classList.add('in'));
             }
-        })();
 
-        // Projects Horizontal Scroll Rail Controller (Option A - Ghost Rail)
-        (function() {
-            const grid = document.querySelector('.projects-grid');
-            const prevBtn = document.getElementById('projects-prev');
-            const nextBtn = document.getElementById('projects-next');
+            // 3. PROJECT ROW HOVER IMAGE PREVIEW CONTROLLER
+            const previewBox = document.getElementById('project-hover-preview');
+            const previewImg = document.getElementById('project-hover-img');
+            const projectRows = document.querySelectorAll('.project-row');
 
-            if (grid && prevBtn && nextBtn) {
-                const getScrollAmount = () => {
-                    const firstCard = grid.querySelector('.project-card');
-                    if (!firstCard) return 500;
-                    const gap = parseFloat(window.getComputedStyle(grid).gap) || 32;
-                    return firstCard.offsetWidth + gap;
-                };
+            if (previewBox && previewImg && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                projectRows.forEach(row => {
+                    const imgSrc = row.getAttribute('data-preview');
+                    row.addEventListener('mouseenter', () => {
+                        if (imgSrc) {
+                            previewImg.src = imgSrc;
+                            previewBox.classList.add('is-active');
+                        }
+                    });
 
-                const updateButtonStates = () => {
-                    const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
-                    prevBtn.disabled = grid.scrollLeft <= 5;
-                    nextBtn.disabled = grid.scrollLeft >= maxScrollLeft - 5;
-                };
+                    row.addEventListener('mousemove', (e) => {
+                        // Offset by 24px so preview floats smoothly near the cursor
+                        const x = e.clientX + 24;
+                        const y = e.clientY - (previewBox.offsetHeight / 2);
+                        previewBox.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                    });
 
-                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                const behavior = prefersReducedMotion ? 'auto' : 'smooth';
-
-                prevBtn.addEventListener('click', () => {
-                    grid.scrollBy({ left: -getScrollAmount(), behavior: behavior });
+                    row.addEventListener('mouseleave', () => {
+                        previewBox.classList.remove('is-active');
+                    });
                 });
-
-                nextBtn.addEventListener('click', () => {
-                    grid.scrollBy({ left: getScrollAmount(), behavior: behavior });
-                });
-
-                grid.addEventListener('scroll', updateButtonStates, { passive: true });
-                window.addEventListener('resize', updateButtonStates, { passive: true });
-                updateButtonStates();
             }
+
+            // 4. MOBILE NAVIGATION DRAWER CONTROLLER
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function openDrawer() {
+                if (mobileDrawer && menuToggle) {
+                    mobileDrawer.classList.add('is-open');
+                    mobileDrawer.setAttribute('aria-hidden', 'false');
+                    menuToggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeDrawer() {
+                if (mobileDrawer && menuToggle) {
+                    mobileDrawer.classList.remove('is-open');
+                    mobileDrawer.setAttribute('aria-hidden', 'true');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', openDrawer);
+            if (menuClose) menuClose.addEventListener('click', closeDrawer);
+            mobileLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+            // Close on Escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('is-open')) {
+                    closeDrawer();
+                }
+            });
         })();
     </script>
 </body>
