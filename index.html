@@ -8,13 +8,13 @@
     <meta name="author" content="Gabriel Martin R. Manalo">
     <title>Gabriel Martin R. Manalo &mdash; Portfolio</title>
 
-    <!-- Google Font: Inter -->
+    <!-- Google Fonts: Inter (Sans) & Libre Baskerville (Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=17">
+    <link rel="stylesheet" href="css/style.css?v=28">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
         <!-- 1. HERO SECTION -->
         <section id="hero" class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <div class="hero-content reveal">
+                <div class="hero-content">
                     <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
                     <h1 id="hero-title" class="hero-title">
                         Hello! I'm Martin
@@ -68,13 +68,13 @@
         <!-- 2. ABOUT SECTION -->
         <section id="about" class="section" aria-labelledby="about-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">01 / Background</span>
                     <h2 id="about-title">About</h2>
                 </div>
 
                 <div class="about-grid">
-                    <div class="about-narrative reveal">
+                    <div class="about-narrative">
                         <p class="narrative-lead">
                             I approach IT not simply as writing code, but as designing effective solutions to complex technical and architectural problems.
                         </p>
@@ -86,7 +86,7 @@
                         </p>
                     </div>
 
-                    <div class="about-media reveal reveal-stagger-1">
+                    <div class="about-media">
                         <div class="about-portrait-wrapper">
                             <div class="about-image-frame">
                                 <img src="assets/me/Profile.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="about-image" width="1090" height="1596" loading="lazy" decoding="async">
@@ -100,7 +100,7 @@
         <!-- 3. PROJECTS SECTION -->
         <section id="projects" class="section" aria-labelledby="projects-title">
             <div class="container">
-                <div class="projects-header-row reveal">
+                <div class="projects-header-row">
                     <div class="section-heading">
                         <span class="section-index">02 / Selected Works</span>
                         <h2 id="projects-title">Projects</h2>
@@ -115,7 +115,7 @@
             <div class="projects-container">
                 <div class="projects-grid">
                     <!-- Project Card 01 -->
-                    <article class="project-card reveal reveal-stagger-1">
+                    <article class="project-card">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
                                 <img src="assets/proj/SALN System.webp" alt="SALN Submission Portal interface screenshot" loading="lazy">
@@ -145,7 +145,7 @@
                     </article>
 
                     <!-- Project Card 02 -->
-                    <article class="project-card reveal reveal-stagger-2">
+                    <article class="project-card">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
                                 <img src="assets/proj/figma.png" alt="PUPWESTO" loading="lazy">
@@ -175,7 +175,7 @@
                     </article>
 
                     <!-- Project Card 03 -->
-                    <article class="project-card reveal reveal-stagger-3">
+                    <article class="project-card">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
                                 <img src="assets/proj/koso-preview.webp" alt="koso-lifewear" loading="lazy">
@@ -205,7 +205,7 @@
                     </article>
 
                     <!-- Project Card 04 -->
-                    <article class="project-card reveal reveal-stagger-3">
+                    <article class="project-card">
                         <div class="project-card-inner">
                             <div class="project-card-visual">
                                 <img src="assets/proj/axis-studio.webp" alt="axis-studio" loading="lazy">
@@ -243,52 +243,208 @@
         <!-- 4. TECH STACK SECTION -->
         <section id="stack" class="section" aria-labelledby="stack-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">03 / Tooling</span>
-                    <h2 id="stack-title">Stack</h2>
+                    <h2 id="stack-title">Tech Stack</h2>
                 </div>
 
-                <div class="stack-grid">
-                    
-                    <div class="stack-col reveal reveal-stagger-1">
-                        <h3 class="stack-category">Front-End</h3>
-                        <ul class="stack-items">
-                            <li>HTML5 Semantic Markup</li>
-                            <li>CSS3 (Flexbox & Grid)</li>
-                            <li>Responsive Web Systems</li>
-                        </ul>
+                <div class="stack-layout">
+
+                    <!-- Category 01: Frontend Languages & Frameworks -->
+                    <div class="stack-category-row">
+                        <div class="stack-category-info">
+                            <h3 class="stack-category-title">Frontend Languages & Frameworks</h3>
+                            <p class="stack-category-desc">
+                                The tools I use to build beautiful, responsive, and interactive user interfaces.
+                            </p>
+                        </div>
+                        <div class="stack-category-card">
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/html.svg" alt="HTML" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">HTML</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/css.svg" alt="CSS" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">CSS</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/javascript.svg" alt="JavaScript" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">JavaScript</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/react.svg" alt="React" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">React</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-2">
-                        <h3 class="stack-category">Back-End</h3>
-                        <ul class="stack-items">
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>C++</li>
-                            <li>JavaScript</li>
-                            <li>COBOL</li>
-                            <li>R</li>
-                        </ul>
+                    <!-- Category 02: Backend Core -->
+                    <div class="stack-category-row">
+                        <div class="stack-category-info">
+                            <h3 class="stack-category-title">Backend Core</h3>
+                            <p class="stack-category-desc">
+                                The foundations of the APIs and services I build for web apps and systems.
+                            </p>
+                        </div>
+                        <div class="stack-category-card">
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/nodejs.svg" alt="Node.js" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Node.js</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/python.svg" alt="Python" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Python</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/java.svg" alt="Java" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Java</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/cplusplus.svg" alt="C++" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">C++</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-3">
-                        <h3 class="stack-category">Databases</h3>
-                        <ul class="stack-items">
-                            <li>MySQL</li>
-                            <li>PostgreSQL</li>
-                            <li>TiDB Cloud</li>
-                        </ul>
+                    <!-- Category 03: Databases -->
+                    <div class="stack-category-row">
+                        <div class="stack-category-info">
+                            <h3 class="stack-category-title">Databases</h3>
+                            <p class="stack-category-desc">
+                                Relational, distributed, and cloud database engines for structured data management.
+                            </p>
+                        </div>
+                        <div class="stack-category-card">
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/mysql.svg" alt="MySQL" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">MySQL</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/postgresql.svg" alt="PostgreSQL" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">PostgreSQL</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/tidb.svg" alt="TiDB Cloud" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">TiDB Cloud</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/mongodb.svg" alt="MongoDB" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">MongoDB</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="stack-col reveal reveal-stagger-4">
-                        <h3 class="stack-category">Infrastructure & Tools</h3>
-                        <ul class="stack-items">
-                            <li>Git & GitHub</li>
-                            <li>Vercel</li>
-                            <li>Cisco Packet Tracer</li>
-                            <li>Figma</li>
-                        </ul>
+                    <!-- Category 04: Developer Tools -->
+                    <div class="stack-category-row">
+                        <div class="stack-category-info">
+                            <h3 class="stack-category-title">Developer Tools</h3>
+                            <p class="stack-category-desc">
+                                The tools I use to develop, version, prototype, and deploy websites and apps.
+                            </p>
+                        </div>
+                        <div class="stack-category-card">
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/vscode.svg" alt="VS Code" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">VS Code</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/github.svg" alt="GitHub" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">GitHub</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/git.svg" alt="Git" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Git</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/vercel.svg" alt="Vercel" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Vercel</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Category 05: AI Tools -->
+                    <div class="stack-category-row">
+                        <div class="stack-category-info">
+                            <h3 class="stack-category-title">AI Tools</h3>
+                            <p class="stack-category-desc">
+                                The tools I use for assistance, optimization, and debugging.
+                            </p>
+                        </div>
+                        <div class="stack-category-card">
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/antigravity.svg" alt="Antigravity CLI" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Antigravity CLI</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/gemini.svg" alt="Gemini" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Gemini</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/chatgpt.svg" alt="ChatGPT" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">ChatGPT</span>
+                            </div>
+
+                            <div class="stack-item">
+                                <div class="tech-icon-wrap">
+                                    <img src="assets/tech/claude.svg" alt="Claude" width="36" height="36" class="tech-icon" loading="lazy">
+                                </div>
+                                <span class="tech-label">Claude</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -296,16 +452,19 @@
         <!-- 5. EXPERIENCE SECTION -->
         <section id="experience" class="section" aria-labelledby="experience-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">04 / History</span>
                     <h2 id="experience-title">Experience</h2>
                 </div>
 
                 <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-1">
+                    <article class="timeline-row">
                         <div class="timeline-meta">
-                            <p class="timeline-date">October 2024 &ndash; Present</p>
+                            <p class="timeline-date">October 2026 &ndash; Present</p>
                             <span class="timeline-badge">Organization</span>
+                            <div class="timeline-logo-wrap">
+                                <img src="assets/logos/aws.png" alt="AWS Cloud Club PUP logo" width="120" height="120" class="timeline-logo logo-circle" loading="lazy">
+                            </div>
                         </div>
                         <div class="timeline-body">
                             <h3 class="timeline-role">Associate Lead for the Web Development Department - Skill Builder Department</h3>
@@ -319,13 +478,14 @@
                             </ul>
                         </div>
                     </article>
-                </div>
 
-                <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-2">
+                    <article class="timeline-row">
                         <div class="timeline-meta">
-                            <p class="timeline-date">September 2024 &ndash; Present</p>
+                            <p class="timeline-date">September 2026 &ndash; Present</p>
                             <span class="timeline-badge">Organization</span>
+                            <div class="timeline-logo-wrap">
+                                <img src="assets/logos/cncp.png" alt="Cisco NetConnect PUP logo" width="120" height="120" class="timeline-logo logo-rounded" loading="lazy">
+                            </div>
                         </div>
                         <div class="timeline-body">
                             <h3 class="timeline-role">Membership Lead - Relations Department</h3>
@@ -340,13 +500,14 @@
                             </ul>
                         </div>
                     </article>
-                </div>
 
-                <div class="experience-list">
-                    <article class="timeline-row reveal reveal-stagger-3">
+                    <article class="timeline-row">
                         <div class="timeline-meta">
-                            <p class="timeline-date">August 2024 &ndash; Present</p>
+                            <p class="timeline-date">August 2026 &ndash; Present</p>
                             <span class="timeline-badge">Organization</span>
+                            <div class="timeline-logo-wrap">
+                                <img src="assets/logos/mcc.png" alt="Microsoft Campus Club PUP logo" width="120" height="120" class="timeline-logo logo-rounded" loading="lazy">
+                            </div>
                         </div>
                         <div class="timeline-body">
                             <h3 class="timeline-role">Marketing Communications Officer</h3>
@@ -369,13 +530,13 @@
         <!-- 6. EDUCATION SECTION -->
         <section id="education" class="section" aria-labelledby="education-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">05 / Academics</span>
                     <h2 id="education-title">Education</h2>
                 </div>
 
                 <div class="education-block">
-                    <article class="education-item reveal">
+                    <article class="education-item">
                         <div class="education-meta">
                             <p class="timeline-date">October 2024 &ndash; Present</p>
                         </div>
@@ -394,14 +555,14 @@
         <!-- 7. CERTIFICATES SECTION -->
         <section id="certificates" class="section" aria-labelledby="certificates-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">06 / Credentials</span>
                     <h2 id="certificates-title">Certificates</h2>
                 </div>
 
                 <div class="certificates-grid">
                     <!-- Certificate Entry 01: DataCamp SQL -->
-                    <article class="certificate-entry reveal reveal-stagger-1">
+                    <article class="certificate-entry">
                         <a href="assets/certificates/SQL certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-visual" aria-label="View Statement of Accomplishment for Introduction to SQL">
                             <img src="assets/certificates/Introduction to SQL - DataCamp.webp" alt="DataCamp Introduction to SQL Statement of Accomplishment for Gabriel Martin Manalo" loading="lazy">
                         </a>
@@ -425,13 +586,13 @@
         <!-- 8. CONTACT SECTION -->
         <section id="contact" class="section" aria-labelledby="contact-title">
             <div class="container">
-                <div class="section-heading reveal">
+                <div class="section-heading">
                     <span class="section-index">07 / Inquiries</span>
                     <h2 id="contact-title">Contact</h2>
                 </div>
 
                 <div class="contact-grid">
-                    <div class="contact-info reveal">
+                    <div class="contact-info">
                         <p class="lead">
                         Have a project in mind, an internship opportunity, or want to discuss software systems and web development? Drop me a line anytime.
                         </p>
@@ -452,7 +613,7 @@
                         </div>
                     </div>
 
-                    <div class="contact-card reveal">
+                    <div class="contact-card">
                         <div class="card-header">
                             <span class="card-label">Send a Message</span>
                         </div>
@@ -498,45 +659,9 @@
         </div>
     </footer>
 
-    <!-- Vanilla JS: Smooth horizontal projects navigation & Editorial Scroll Reveal / Exit -->
+    <!-- Vanilla JS: Projects Horizontal Scroll Rail Controller -->
     <script>
-        // Progressive Editorial Scroll-Reveal & Reversible Exit Observer
-        (function() {
-            // Signal to CSS that progressive enhancement is enabled
-            document.documentElement.classList.add('js');
-
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const revealElements = document.querySelectorAll('.reveal');
-
-            if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-revealed');
-                            entry.target.classList.remove('is-exited-top');
-                        } else {
-                            entry.target.classList.remove('is-revealed');
-                            const rootTop = entry.rootBounds ? entry.rootBounds.top : 0;
-                            if (entry.boundingClientRect.top < rootTop) {
-                                entry.target.classList.add('is-exited-top');
-                            } else {
-                                entry.target.classList.remove('is-exited-top');
-                            }
-                        }
-                    });
-                }, {
-                    rootMargin: '-110px 0px -50px 0px',
-                    threshold: 0.05
-                });
-
-                revealElements.forEach(el => revealObserver.observe(el));
-            } else {
-                // If reduced motion is preferred or IntersectionObserver is unsupported, reveal immediately
-                revealElements.forEach(el => el.classList.add('is-revealed'));
-            }
-        })();
-
-        // Projects Horizontal Scroll Rail Controller (Option A - Ghost Rail)
+        // Projects Horizontal Scroll Rail Controller
         (function() {
             const grid = document.querySelector('.projects-grid');
             const prevBtn = document.getElementById('projects-prev');
