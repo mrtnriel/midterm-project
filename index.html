@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=28">
+    <link rel="stylesheet" href="css/style.css?v=34">
 </head>
 
 <body>
@@ -49,17 +49,27 @@
         <!-- 1. HERO SECTION -->
         <section id="hero" class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <div class="hero-content">
-                    <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
-                    <h1 id="hero-title" class="hero-title">
-                        Hello! I'm Martin
-                    </h1>
-                    <p class="lead">
-                        I am a BS Information Technology student at the Polytechnic University of the Philippines with a core understanding of full-stack software development, systems design, and modern database systems.
-                    </p>
-                    <div class="actions">
-                        <a class="btn btn-primary" href="#projects">View Selected Work <span>&rarr;</span></a>
-                        <a class="btn btn-secondary" href="#contact">Get In Touch <span>&rarr;</span></a>
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <p class="eyebrow">Gabriel Martin R. Manalo &mdash; BS Information Technology</p>
+                        <h1 id="hero-title" class="hero-title" aria-label="Hello! I'm Martin">
+                            <span class="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>
+                        </h1>
+                        <p class="lead">
+                            I am a BS Information Technology student at the Polytechnic University of the Philippines with a core understanding of full-stack software development.
+                        </p>
+                        <div class="actions">
+                            <a class="btn btn-primary" href="#projects">View Selected Work <span>&rarr;</span></a>
+                            <a class="btn btn-secondary" href="assets/cv/manalo_cv.pdf" download="Gabriel-Martin-Manalo-CV.pdf" aria-label="Download CV (PDF)">Download CV <span class="btn-download-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span></a>
+                        </div>
+                    </div>
+
+                    <div class="hero-media">
+                        <div class="about-portrait-wrapper">
+                            <div class="about-image-frame">
+                                <img src="assets/me/hero.jpg" alt="Gabriel Martin R. Manalo sitting in a studio chair holding a camera" class="about-image" width="1090" height="1596" fetchpriority="high">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,7 +263,7 @@
                     <!-- Category 01: Frontend Languages & Frameworks -->
                     <div class="stack-category-row">
                         <div class="stack-category-info">
-                            <h3 class="stack-category-title">Frontend Languages & Frameworks</h3>
+                            <h3 class="stack-category-title">Frontend Core</h3>
                             <p class="stack-category-desc">
                                 The tools I use to build beautiful, responsive, and interactive user interfaces.
                             </p>
@@ -696,6 +706,143 @@
                 window.addEventListener('resize', updateButtonStates, { passive: true });
                 updateButtonStates();
             }
+        })();
+
+        // Unified Typing Animation Controller (Hero & Section Headings)
+        (function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // 1. HERO TITLE CONTROLLER
+            const heroHeading = document.getElementById('hero-title');
+            if (heroHeading) {
+                const textEl = heroHeading.querySelector('.typing-text');
+                const cursor = heroHeading.querySelector('.typing-cursor');
+                const fullText = "Hello! I'm Martin";
+                let heroTimeout = null;
+                let heroTyped = false;
+
+                if (prefersReducedMotion) {
+                    if (textEl) textEl.textContent = fullText;
+                    if (cursor) cursor.style.display = 'none';
+                } else if (textEl && cursor) {
+                    function typeHero() {
+                        clearTimeout(heroTimeout);
+                        textEl.textContent = '';
+                        cursor.classList.remove('is-finished');
+                        cursor.style.display = 'inline-block';
+
+                        let index = 0;
+                        function typeChar() {
+                            if (index < fullText.length) {
+                                textEl.textContent += fullText.charAt(index);
+                                const char = fullText.charAt(index);
+                                index++;
+
+                                let delay = 70;
+                                if (char === '!') delay = 280;
+                                else if (char === ' ') delay = 100;
+
+                                heroTimeout = setTimeout(typeChar, delay);
+                            } else {
+                                heroTimeout = setTimeout(() => {
+                                    cursor.classList.add('is-finished');
+                                }, 1400);
+                            }
+                        }
+                        heroTimeout = setTimeout(typeChar, 250);
+                    }
+
+                    window.addEventListener('pageshow', () => {
+                        heroTyped = false;
+                        typeHero();
+                    });
+
+                    if ('IntersectionObserver' in window) {
+                        const heroObserver = new IntersectionObserver((entries) => {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting && !heroTyped) {
+                                    heroTyped = true;
+                                    typeHero();
+                                }
+                            });
+                        }, { threshold: 0.2 });
+                        heroObserver.observe(heroHeading);
+                    } else {
+                        typeHero();
+                    }
+                }
+            }
+
+            // 2. SECTION HEADINGS SCROLL-REVEAL TYPING CONTROLLER
+            const sectionHeadings = document.querySelectorAll('.section-heading h2');
+            if (!sectionHeadings.length) return;
+
+            sectionHeadings.forEach((heading) => {
+                const fullText = heading.textContent.trim();
+                heading.setAttribute('aria-label', fullText);
+
+                if (prefersReducedMotion) {
+                    return; // Respect reduced motion preference; keep static text
+                }
+
+                // Inject typing elements
+                heading.innerHTML = '<span class="typing-text"></span><span class="typing-cursor" aria-hidden="true"></span>';
+                const textEl = heading.querySelector('.typing-text');
+                const cursor = heading.querySelector('.typing-cursor');
+                let headingTimer = null;
+                let hasTyped = false;
+
+                function typeHeading() {
+                    clearTimeout(headingTimer);
+                    textEl.textContent = '';
+                    if (cursor) {
+                        cursor.classList.remove('is-finished');
+                        cursor.style.display = 'inline-block';
+                    }
+
+                    let idx = 0;
+                    function step() {
+                        if (idx < fullText.length) {
+                            textEl.textContent += fullText.charAt(idx);
+                            const char = fullText.charAt(idx);
+                            idx++;
+                            const delay = (char === ' ') ? 90 : 55;
+                            headingTimer = setTimeout(step, delay);
+                        } else if (cursor) {
+                            headingTimer = setTimeout(() => {
+                                cursor.classList.add('is-finished');
+                            }, 1200);
+                        }
+                    }
+                    headingTimer = setTimeout(step, 100);
+                }
+
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                if (!hasTyped) {
+                                    hasTyped = true;
+                                    typeHeading();
+                                }
+                            } else {
+                                // Reset when scrolled out of view so it replays whenever scrolled back into view
+                                hasTyped = false;
+                                textEl.textContent = '';
+                                if (cursor) {
+                                    cursor.classList.remove('is-finished');
+                                }
+                            }
+                        });
+                    }, {
+                        threshold: 0.2,
+                        rootMargin: '0px 0px -40px 0px'
+                    });
+                    observer.observe(heading);
+                } else {
+                    typeHeading();
+                }
+            });
         })();
     </script>
 </body>
