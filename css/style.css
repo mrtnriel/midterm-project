@@ -106,6 +106,67 @@ li,
     width: 100%;
 }
 
+/* ==========================================================================
+   SITE PRELOADER: Wordmark Morph Transition
+   ========================================================================== */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 350ms var(--ease-out), visibility 350ms var(--ease-out);
+    will-change: opacity;
+}
+
+.preloader.is-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-inner {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader-wordmark {
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.15em;
+    will-change: transform;
+    transform-origin: center center;
+}
+
+.preloader-cursor {
+    display: inline-block;
+    width: clamp(2px, 0.05em, 4px);
+    height: 0.86em;
+    vertical-align: -0.04em;
+    background-color: var(--ink);
+    margin-left: clamp(3px, 0.1em, 6px);
+    animation: blinkCursor 0.8s steps(2, start) infinite;
+    transition: opacity 120ms ease-out;
+}
+
+.preloader-cursor.is-finished {
+    opacity: 0;
+}
+
+/* Prevent scrolling while preloader is active */
+body.is-loading {
+    overflow: hidden;
+}
+
 /* --- 4. Site Header & Navigation --- */
 .site-header {
     border-bottom: none;
@@ -128,7 +189,7 @@ li,
 
 .wordmark {
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--ink);
@@ -148,8 +209,34 @@ nav a {
     font-size: 0.95rem;
     font-weight: 400;
     padding-bottom: 3px;
-    transition: color var(--duration-base) var(--ease-out);
+    transition-property: opacity, transform, color;
+    transition-duration: 700ms, 700ms, var(--duration-base);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), var(--ease-out);
+    transition-delay: var(--nav-delay, 0ms), var(--nav-delay, 0ms), 0ms;
+    will-change: opacity, transform;
 }
+
+/* Initially hidden below baseline while preloader is active */
+body.is-loading .site-header nav a {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+}
+
+/* When MRTN.RIEL docks into header position, slowly fade up in gentle cadence */
+.site-header.is-ready nav a {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.site-header.is-ready nav a:nth-child(1) { --nav-delay: 60ms; }
+.site-header.is-ready nav a:nth-child(2) { --nav-delay: 110ms; }
+.site-header.is-ready nav a:nth-child(3) { --nav-delay: 160ms; }
+.site-header.is-ready nav a:nth-child(4) { --nav-delay: 210ms; }
+.site-header.is-ready nav a:nth-child(5) { --nav-delay: 260ms; }
+.site-header.is-ready nav a:nth-child(6) { --nav-delay: 310ms; }
+.site-header.is-ready nav a:nth-child(7) { --nav-delay: 360ms; }
 
 nav a::after {
     content: "";
@@ -341,6 +428,15 @@ nav a::after {
     color: var(--ink);
     text-wrap: balance;
     min-height: 1.15em;
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+/* Initially invisible until placed at screen center for typing */
+.js-loaded #hero-title:not(.is-active) {
+    opacity: 0;
 }
 
 /* Hero Title Typing Animation Cursor */
@@ -383,6 +479,45 @@ nav a::after {
     gap: clamp(12px, 1.5vw, 16px);
     flex-wrap: wrap;
     align-items: center;
+}
+
+/* Choreographed Cascade: Eyebrow, lead text, and buttons fade in after greeting returns to position */
+.js-loaded .hero-cascade {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded .hero-content.is-ready .hero-cascade {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded .hero-content.is-ready .hero-cascade.eyebrow {
+    transition-delay: 0ms;
+}
+
+.js-loaded .hero-content.is-ready .hero-cascade.lead {
+    transition-delay: 90ms;
+}
+
+.js-loaded .hero-content.is-ready .hero-cascade.actions {
+    transition-delay: 180ms;
+}
+
+/* Hero Media: Dimensional Fade-Up & Settle Reveal (matched with text fade) */
+.js-loaded .hero-media .about-portrait-wrapper {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    transition: opacity 650ms var(--ease-out),
+                transform 650ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded .hero-media.is-revealed .about-portrait-wrapper {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 /* Short screen safeguard: compact vertical rhythm for laptop/landscape screens (e.g. 1366x768 with browser chrome, 844x390) */
@@ -432,6 +567,410 @@ nav a::after {
     min-height: 1.15em;
 }
 
+/* About Title: Centered Typing & Morph */
+#about-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #about-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* About Section Index: Fades in as About title docks */
+.js-loaded #about .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #about.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Projects Title: Centered Typing & Morph within Projects Section */
+#projects-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #projects-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Projects Header Controls & Index: Fade in as Projects title docks */
+.js-loaded #projects .section-index,
+.js-loaded #projects .projects-nav-controls {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #projects.is-revealed .section-index,
+.js-loaded #projects.is-revealed .projects-nav-controls {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Projects Carousel Cards: Staggered Fade-Up Reveal */
+.js-loaded #projects .project-card {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    transition-property: opacity, transform, border-color;
+    transition-duration: 700ms, 700ms, 200ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), ease;
+    transition-delay: var(--card-delay, 0ms), var(--card-delay, 0ms), 0ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #projects.is-revealed .project-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.js-loaded #projects.is-revealed .project-card:nth-child(1) { --card-delay: 80ms; }
+.js-loaded #projects.is-revealed .project-card:nth-child(2) { --card-delay: 180ms; }
+.js-loaded #projects.is-revealed .project-card:nth-child(3) { --card-delay: 280ms; }
+.js-loaded #projects.is-revealed .project-card:nth-child(4) { --card-delay: 380ms; }
+
+/* Keep hover & active interactions instantaneous without lingering stagger delays */
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover {
+        --card-delay: 0ms !important;
+        border-color: var(--ink);
+        transform: translate3d(0, -6px, 0) scale(1);
+    }
+}
+
+.project-card:active {
+    --card-delay: 0ms !important;
+    transform: translate3d(0, -2px, 0) scale(0.99);
+}
+
+/* Tech Stack Title: Centered Typing & Morph within Stack Section */
+#stack-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #stack-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Stack Section Index: Fade in as Stack title docks */
+.js-loaded #stack .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #stack.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tech Stack Category Rows: Staggered Fade-Up Reveal */
+.js-loaded #stack .stack-category-row {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--row-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.js-loaded #stack.is-revealed .stack-category-row {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded #stack.is-revealed .stack-category-row:nth-child(1) { --row-delay: 60ms; }
+.js-loaded #stack.is-revealed .stack-category-row:nth-child(2) { --row-delay: 150ms; }
+.js-loaded #stack.is-revealed .stack-category-row:nth-child(3) { --row-delay: 240ms; }
+.js-loaded #stack.is-revealed .stack-category-row:nth-child(4) { --row-delay: 330ms; }
+.js-loaded #stack.is-revealed .stack-category-row:nth-child(5) { --row-delay: 420ms; }
+
+/* Experience Title: Centered Typing & Morph within Experience Section */
+#experience-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #experience-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Experience Section Index: Fade in as Experience title docks */
+.js-loaded #experience .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #experience.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Experience Timeline Rows: Staggered Fade-Up Reveal */
+.js-loaded #experience .experience-list {
+    border-top: none;
+}
+
+.js-loaded #experience .timeline-row:first-child {
+    border-top: 1px solid var(--line);
+}
+
+.js-loaded #experience .timeline-row {
+    opacity: 0;
+    transform: translateY(24px);
+    transition-property: opacity, transform;
+    transition-duration: 650ms, 650ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--row-delay, 0ms), var(--row-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.js-loaded #experience.is-revealed .timeline-row {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded #experience.is-revealed .timeline-row:nth-child(1) { --row-delay: 80ms; }
+.js-loaded #experience.is-revealed .timeline-row:nth-child(2) { --row-delay: 200ms; }
+.js-loaded #experience.is-revealed .timeline-row:nth-child(3) { --row-delay: 320ms; }
+
+@media (hover: hover) and (pointer: fine) {
+    #experience .timeline-row:hover {
+        --row-delay: 0ms !important;
+    }
+}
+
+/* Education Title: Centered Typing & Morph within Education Section */
+#education-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #education-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Education Section Index: Fade in as Education title docks */
+.js-loaded #education .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #education.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Education Block & Item: Fade-Up Reveal with Seamless Top Divider */
+.js-loaded #education .education-block {
+    border-top: none;
+}
+
+.js-loaded #education .education-item:first-child {
+    border-top: 1px solid var(--line);
+}
+
+.js-loaded #education .education-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition-property: opacity, transform;
+    transition-duration: 650ms, 650ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 80ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #education.is-revealed .education-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Certificates Title: Centered Typing & Morph within Certificates Section */
+#certificates-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #certificates-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Certificates Section Index: Fade in as Certificates title docks */
+.js-loaded #certificates .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #certificates.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Certificates Grid & Cards: Staggered Fade-Up Reveal with Seamless Top Divider */
+.js-loaded #certificates .certificates-grid {
+    border-top-color: transparent;
+    transition: border-color 650ms var(--ease-out);
+}
+
+.js-loaded #certificates.is-revealed .certificates-grid {
+    border-top-color: var(--line);
+}
+
+.js-loaded #certificates .certificate-entry {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    transition-property: opacity, transform, border-color;
+    transition-duration: 700ms, 700ms, var(--duration-base);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), var(--ease-out);
+    transition-delay: var(--cert-delay, 0ms), var(--cert-delay, 0ms), 0ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #certificates.is-revealed .certificate-entry {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.js-loaded #certificates.is-revealed .certificate-entry:nth-child(1) { --cert-delay: 80ms; }
+.js-loaded #certificates.is-revealed .certificate-entry:nth-child(2) { --cert-delay: 180ms; }
+.js-loaded #certificates.is-revealed .certificate-entry:nth-child(3) { --cert-delay: 280ms; }
+
+@media (hover: hover) and (pointer: fine) {
+    .certificate-entry:hover {
+        --cert-delay: 0ms !important;
+    }
+}
+
+.certificate-entry:active {
+    --cert-delay: 0ms !important;
+}
+
+/* Contact Title: Centered Typing & Morph within Contact Section */
+#contact-title {
+    width: fit-content;
+    position: relative;
+    z-index: 20;
+    will-change: transform;
+}
+
+.js-loaded #contact-title:not(.is-active) {
+    opacity: 0;
+}
+
+/* Contact Section Index: Fade in as Contact title docks */
+.js-loaded #contact .section-index {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+    will-change: opacity, transform;
+}
+
+.js-loaded #contact.is-revealed .section-index {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contact Intro Lead & Card Reveal */
+.js-loaded #contact .contact-info .lead {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 60ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #contact.is-revealed .contact-info .lead {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded #contact .contact-card {
+    opacity: 0;
+    transform: translateY(24px) scale(0.99);
+    transition-property: opacity, transform, border-color;
+    transition-duration: 700ms, 700ms, var(--duration-base);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), var(--ease-out);
+    transition-delay: 180ms, 180ms, 0ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #contact.is-revealed .contact-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Contact Channels: Seamless Top Divider & Staggered Row Reveal */
+.js-loaded #contact .contact-channels {
+    border-top-color: transparent;
+    transition: border-color 650ms var(--ease-out);
+}
+
+.js-loaded #contact.is-revealed .contact-channels {
+    border-top-color: var(--line);
+}
+
+.js-loaded #contact .channel-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition-property: opacity, transform, border-color;
+    transition-duration: 650ms, 650ms, var(--duration-base);
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1), var(--ease-out);
+    transition-delay: var(--channel-delay, 0ms), var(--channel-delay, 0ms), 0ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded #contact.is-revealed .channel-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded #contact.is-revealed .channel-item:nth-child(1) { --channel-delay: 120ms; }
+.js-loaded #contact.is-revealed .channel-item:nth-child(2) { --channel-delay: 220ms; }
+.js-loaded #contact.is-revealed .channel-item:nth-child(3) { --channel-delay: 320ms; }
+.js-loaded #contact.is-revealed .channel-item:nth-child(4) { --channel-delay: 420ms; }
+
+@media (hover: hover) and (pointer: fine) {
+    .channel-item:hover {
+        --channel-delay: 0ms !important;
+    }
+
+    .contact-card:hover {
+        transition-delay: 0ms !important;
+    }
+}
+
+.channel-item:active {
+    --channel-delay: 0ms !important;
+}
+
 /* --- 8. About Section --- */
 .about-grid {
     display: grid;
@@ -452,6 +991,26 @@ nav a::after {
     margin-bottom: 1.5rem;
     text-align: left;
 }
+
+/* Staggered Fade-Up Scroll Reveal */
+.js-loaded .about-narrative p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.js-loaded .about-narrative.is-revealed p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-loaded .about-narrative.is-revealed p:nth-child(1) { transition-delay: 60ms; }
+.js-loaded .about-narrative.is-revealed p:nth-child(2) { transition-delay: 150ms; }
+.js-loaded .about-narrative.is-revealed p:nth-child(3) { transition-delay: 240ms; }
+.js-loaded .about-narrative.is-revealed p:nth-child(4) { transition-delay: 330ms; }
+.js-loaded .about-narrative.is-revealed p:nth-child(5) { transition-delay: 420ms; }
 
 .about-narrative p:last-child {
     margin-bottom: 0;
@@ -482,6 +1041,21 @@ nav a::after {
     display: inline-block;
     width: 100%;
     max-width: 380px;
+}
+
+/* About Portrait Media: Dimensional Fade-Up & Settle Reveal */
+.js-loaded .about-media .about-portrait-wrapper {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 180ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded .about-media.is-revealed .about-portrait-wrapper {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 /* Thin outline frame offset behind the portrait by 16px to create architectural depth */
@@ -1036,38 +1610,35 @@ nav a::after {
     align-items: start;
     padding-block: clamp(2.25rem, 4.5vh, 3.25rem);
     border-bottom: 1px solid var(--line);
-    transition: border-color var(--duration-base) var(--ease-out);
 }
 
 .education-item {
     display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: 3rem;
-    padding-block: 2.5rem;
+    grid-template-columns: 170px minmax(0, 1fr);
+    column-gap: clamp(2rem, 3.5vw, 2.75rem);
+    row-gap: 0;
+    align-items: start;
+    padding-block: clamp(2.25rem, 4.5vh, 3.25rem);
     border-bottom: 1px solid var(--line);
-    transition: border-color var(--duration-base) var(--ease-out);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .timeline-row:hover, .education-item:hover {
-        border-color: var(--ink);
-    }
+.education-item .timeline-logo-wrap {
+    margin-top: 0;
+    margin-left: 25px;
 }
 
-.timeline-meta {
+.education-item .timeline-logo-wrap,
+.education-item .timeline-logo {
+    width: 150px;
+    height: 150px;
+}
+
+.timeline-meta,
+.education-meta {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 170px;
-}
-
-.education-meta {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
 }
 
 .timeline-date {
@@ -1126,7 +1697,8 @@ nav a::after {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .timeline-row:hover .timeline-logo {
+    .timeline-row:hover .timeline-logo,
+    .education-item:hover .timeline-logo {
         transform: scale(1.03);
     }
 }
@@ -1184,11 +1756,15 @@ nav a::after {
     text-align: left;
 }
 
+.education-body {
+    min-width: 0;
+}
+
 .education-summary {
     color: var(--ink-muted);
     font-size: 1rem;
     line-height: 1.6;
-    max-width: 45em;
+    max-width: none;
 }
 
 /* --- 12. Certificates Section --- */
@@ -1546,10 +2122,16 @@ nav a::after {
     }
 
     .contact-grid,
+    .timeline-row,
     .education-item,
     .certificates-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .timeline-meta,
+    .education-meta {
+        width: 100%;
     }
 
     .stack-category-row {
@@ -1574,13 +2156,15 @@ nav a::after {
 }
 
 @media (max-width: 700px) {
-    .timeline-row {
+    .timeline-row,
+    .education-item {
         grid-template-columns: 1fr;
         gap: 1.5rem;
         padding-block: 2rem;
     }
 
-    .timeline-meta {
+    .timeline-meta,
+    .education-meta {
         width: 100%;
     }
 
@@ -1761,10 +2345,85 @@ nav a::after {
     .about-image-frame,
     .about-image,
     .typing-cursor,
+    .preloader-cursor,
+    #hero-title,
+    .js-loaded #hero-title,
+    #about-title,
+    .js-loaded #about-title,
+    #about .section-index,
+    .js-loaded #about .section-index,
+    #projects-title,
+    .js-loaded #projects-title,
+    #projects .section-index,
+    .js-loaded #projects .section-index,
+    #projects .projects-nav-controls,
+    .js-loaded #projects .projects-nav-controls,
+    #projects .project-card,
+    .js-loaded #projects .project-card,
+    #stack-title,
+    .js-loaded #stack-title,
+    #stack .section-index,
+    .js-loaded #stack .section-index,
+    #stack .stack-category-row,
+    .js-loaded #stack .stack-category-row,
+    #experience-title,
+    .js-loaded #experience-title,
+    #experience .section-index,
+    .js-loaded #experience .section-index,
+    #experience .timeline-row,
+    .js-loaded #experience .timeline-row,
+    #education-title,
+    .js-loaded #education-title,
+    #education .section-index,
+    .js-loaded #education .section-index,
+    #education .education-item,
+    .js-loaded #education .education-item,
+    #certificates-title,
+    .js-loaded #certificates-title,
+    #certificates .section-index,
+    .js-loaded #certificates .section-index,
+    #certificates .certificates-grid,
+    .js-loaded #certificates .certificates-grid,
+    #certificates .certificate-entry,
+    .js-loaded #certificates .certificate-entry,
+    #contact-title,
+    .js-loaded #contact-title,
+    #contact .section-index,
+    .js-loaded #contact .section-index,
+    #contact .contact-info .lead,
+    .js-loaded #contact .contact-info .lead,
+    #contact .contact-channels,
+    .js-loaded #contact .contact-channels,
+    #contact .channel-item,
+    .js-loaded #contact .channel-item,
+    #contact .contact-card,
+    .js-loaded #contact .contact-card,
+    .hero-cascade,
+    .js-loaded .hero-cascade,
+    .hero-media .about-portrait-wrapper,
+    .hero-media.is-revealed .about-portrait-wrapper,
+    .about-narrative p,
+    .about-narrative.is-revealed p,
+    .about-media .about-portrait-wrapper,
+    .about-media.is-revealed .about-portrait-wrapper,
+    nav a,
+    body.is-loading .site-header nav a,
+    .site-header.is-ready nav a,
     nav a::after {
         animation: none !important;
         transition: none !important;
         transform: none !important;
+        clip-path: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .preloader {
+        display: none !important;
+    }
+
+    body.is-loading {
+        overflow: auto !important;
     }
 }
 
