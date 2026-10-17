@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading-scroll">
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,26 @@
     <meta name="author" content="Gabriel Martin R. Manalo">
     <title>Gabriel Martin R. Manalo &mdash; Portfolio</title>
 
+    <!-- Immediate Scroll & History Restoration Reset on Page Refresh -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        if (window.location.hash) {
+            history.replaceState(null, document.title, window.location.pathname + window.location.search);
+        }
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+    </script>
+
     <!-- Google Fonts: Inter (Sans) & Libre Baskerville (Serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=57">
+    <link rel="stylesheet" href="css/style.css?v=58">
 </head>
 
 <body class="is-loading">
@@ -766,6 +779,27 @@
 
         // 0. SITE PRELOADER (Wordmark Typing & Morph Controller)
         (function() {
+            // Guarantee scroll position is at the very top immediately
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            if (document.body) document.body.scrollTop = 0;
+
+            window.addEventListener('beforeunload', () => {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+                window.scrollTo(0, 0);
+            });
+            window.addEventListener('pagehide', () => {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+                window.scrollTo(0, 0);
+            });
+
             const preloader = document.getElementById('preloader');
             const headerWordmark = document.querySelector('.site-header .wordmark');
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -775,6 +809,8 @@
             if (prefersReducedMotion) {
                 preloader.remove();
                 document.body.classList.remove('is-loading');
+                document.documentElement.classList.remove('is-loading-scroll');
+                window.scrollTo(0, 0);
                 const siteHeader = document.querySelector('.site-header');
                 if (siteHeader) siteHeader.classList.add('is-ready');
                 window.dispatchEvent(new CustomEvent('preloaderComplete'));
@@ -792,6 +828,8 @@
             }
 
             function morphToHeader() {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
                 if (preloaderCursor) {
                     preloaderCursor.classList.add('is-finished');
                 }
@@ -854,8 +892,19 @@
             setTimeout(typeChar, 140);
 
             window.addEventListener('pageshow', () => {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                if (document.body) document.body.scrollTop = 0;
                 const siteHeader = document.querySelector('.site-header');
                 if (siteHeader) siteHeader.classList.add('is-ready');
+            });
+
+            window.addEventListener('load', () => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
             });
         })();
 
@@ -876,6 +925,9 @@
                 let heroTyped = false;
 
                 if (prefersReducedMotion) {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.documentElement.classList.remove('is-loading-scroll');
                     if (textEl) textEl.textContent = fullText;
                     if (cursor) cursor.style.display = 'none';
                     if (heroContent) heroContent.classList.add('is-ready');
@@ -885,6 +937,11 @@
                     function typeHero() {
                         clearTimeout(heroTimeout);
                         
+                        // Ensure page is strictly anchored at (0, 0) for perfect viewport coordinate calculations
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        if (document.body) document.body.scrollTop = 0;
+
                         // Reset states
                         if (cursor) {
                             cursor.classList.remove('is-finished');
@@ -961,6 +1018,8 @@
                             if (heroMedia) {
                                 heroMedia.classList.add('is-revealed');
                             }
+                            // Restore smooth scrolling for standard user navigation
+                            document.documentElement.classList.remove('is-loading-scroll');
                         }
 
                         // Start centered typing after brief 80ms delay
@@ -968,6 +1027,10 @@
                     }
 
                     window.addEventListener('pageshow', (event) => {
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        if (document.body) document.body.scrollTop = 0;
+                        document.documentElement.classList.remove('is-loading-scroll');
                         if (event.persisted) {
                             // Back-forward cache restore
                             if (textEl) textEl.textContent = fullText;

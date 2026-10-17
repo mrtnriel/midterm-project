@@ -162,7 +162,13 @@ li,
     opacity: 0;
 }
 
-/* Prevent scrolling while preloader is active */
+/* Prevent scrolling while preloader is active & ensure instant scroll reset without smooth scroll lag */
+html.is-loading-scroll,
+html.is-loading-scroll body,
+body.is-loading {
+    scroll-behavior: auto !important;
+}
+
 body.is-loading {
     overflow: hidden;
 }
