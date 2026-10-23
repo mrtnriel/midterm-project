@@ -30,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Stylesheet (versioned to bust live CDN & browser caches) -->
-    <link rel="stylesheet" href="css/style.css?v=60">
+    <link rel="stylesheet" href="css/style.css?v=62">
 </head>
 
 <body class="is-loading">
@@ -58,6 +58,9 @@
             #experience-title { opacity: 1 !important; transform: none !important; }
             #experience .section-index { opacity: 1 !important; transform: none !important; }
             #experience .timeline-row { opacity: 1 !important; transform: none !important; }
+            #experience .experience-panel { grid-template-rows: 1fr !important; }
+            #experience .experience-panel-inner { opacity: 1 !important; transform: none !important; }
+            #experience .gallery-nav-controls { display: none !important; }
             #education-title { opacity: 1 !important; transform: none !important; }
             #education .section-index { opacity: 1 !important; transform: none !important; }
             #education .education-item { opacity: 1 !important; transform: none !important; }
@@ -537,69 +540,228 @@
                     <h2 id="experience-title">Experience</h2>
                 </div>
 
-                <div class="experience-list">
-                    <article class="timeline-row">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">October 2026 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                            <div class="timeline-logo-wrap">
-                                <img src="assets/logos/aws.png" alt="AWS Cloud Club PUP logo" width="120" height="120" class="timeline-logo logo-circle" loading="lazy">
+                <div class="experience-list experience-accordion" id="experience-accordion">
+                    <!-- Experience Item 01: AWS Cloud Club PUP -->
+                    <article class="timeline-row experience-item" id="exp-item-1" data-experience-item>
+                        <button type="button" class="experience-trigger" id="exp-trigger-1" aria-expanded="false" aria-controls="exp-panel-1">
+                            <div class="experience-logo-col">
+                                <img src="assets/logos/aws.png" alt="AWS Cloud Club PUP logo" width="140" height="140" class="timeline-logo logo-circle" loading="lazy">
                             </div>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Associate Lead for the Web Development Department - Skill Builder Department</h3>
-                            <p class="timeline-org">AWS Cloud Club PUP</p>
-                            <ul class="timeline-details">
-                                <li>Develop practical skills in building websites and web applications through hands-on projects and workshops.</li>
-                                <li>Work with front-end and back-end technologies, with a primary focus on Backend Development.</li>
-                                <li>Strengthen expertise in backend engineering, including server-side logic, API development, and database management.</li>
-                                <li>Collaborate with team members in developing responsive, accessible, and user-centric web applications.</li>
-                                <li>Support the planning and execution of technical activities and workshops to promote continuous learning and skill development.</li>
-                            </ul>
+
+                            <div class="experience-title-group">
+                                <p class="experience-header-date">Oct 2026 &ndash; Present</p>
+                                <h3 class="timeline-role">Associate Lead for the Web Development Department - Skill Builder Department</h3>
+                                <p class="timeline-org">AWS Cloud Club PUP</p>
+                                <p class="experience-summary">Leading technical initiatives and curriculum tracks within the Skill Builder Department, focusing on scalable backend architectures, cloud-native services, and student developer mentorship.</p>
+                                <div class="experience-tags">
+                                    <span class="experience-tag">Web Development</span>
+                                    <span class="experience-tag">Backend Engineering</span>
+                                    <span class="experience-tag">Cloud Architecture</span>
+                                </div>
+                            </div>
+
+                            <div class="experience-toggle-action" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <div class="experience-panel" id="exp-panel-1" role="region" aria-labelledby="exp-trigger-1">
+                            <div class="experience-panel-inner">
+                                <div class="experience-responsibilities">
+                                    <h4 class="experience-subheading">Key Responsibilities &amp; Highlights</h4>
+                                    <ul class="timeline-details">
+                                        <li>Develop practical skills in building websites and web applications through hands-on projects and workshops.</li>
+                                        <li>Work with front-end and back-end technologies, with a primary focus on Backend Development.</li>
+                                        <li>Strengthen expertise in backend engineering, including server-side logic, API development, and database management.</li>
+                                        <li>Collaborate with team members in developing responsive, accessible, and user-centric web applications.</li>
+                                        <li>Support the planning and execution of technical activities and workshops to promote continuous learning and skill development.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="experience-gallery" data-gallery>
+                                    <div class="gallery-header">
+                                        <div class="gallery-header-left">
+                                            <span class="gallery-title">Activity Highlights</span>
+                                            <span class="gallery-count">&bull; 5 Images</span>
+                                        </div>
+                                        <div class="gallery-nav-controls" aria-label="AWS Cloud Club PUP gallery navigation">
+                                            <button type="button" class="gallery-nav-btn gallery-prev" aria-label="Previous image" disabled>&larr;</button>
+                                            <button type="button" class="gallery-nav-btn gallery-next" aria-label="Next image">&rarr;</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="gallery-track-container" tabindex="0" role="region" aria-label="AWS Cloud Club PUP gallery, horizontally scrollable. Use left and right arrow keys to browse.">
+                                        <div class="gallery-track">
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/aws-workshop-01.svg" alt="AWS Cloud Club PUP - Technical Workshop Session 01" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/aws-workshop-02.svg" alt="AWS Cloud Club PUP - Cloud Architecture &amp; Backend Lab" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/aws-workshop-03.svg" alt="AWS Cloud Club PUP - Skill Builder Hands-on Hackathon" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/aws-workshop-04.svg" alt="AWS Cloud Club PUP - Web Dev Department Collaborative Sprint" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/aws-workshop-05.svg" alt="AWS Cloud Club PUP - Curriculum &amp; Project Review Demo" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="timeline-row">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">September 2026 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                            <div class="timeline-logo-wrap">
-                                <img src="assets/logos/cncp.png" alt="Cisco NetConnect PUP logo" width="120" height="120" class="timeline-logo logo-rounded" loading="lazy">
+                    <!-- Experience Item 02: Cisco NetConnect PUP -->
+                    <article class="timeline-row experience-item" id="exp-item-2" data-experience-item>
+                        <button type="button" class="experience-trigger" id="exp-trigger-2" aria-expanded="false" aria-controls="exp-panel-2">
+                            <div class="experience-logo-col">
+                                <img src="assets/logos/cncp.png" alt="Cisco NetConnect PUP logo" width="140" height="140" class="timeline-logo logo-rounded" loading="lazy">
                             </div>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Membership Lead - Relations Department</h3>
-                            <p class="timeline-org">Cisco NetConnect PUP</p>
-                            <ul class="timeline-details">
-                                <li>Oversee membership growth and onboarding initiatives of Cisco NetConnect PUP – Manila.</li>
-                                <li>Develop and implement recruitment strategies to attract and engage potential members.</li>
-                                <li>Set recruitment goals and identify effective channels for reaching and connecting with students.</li>
-                                <li>Conceptualize and organize engaging activities during events to encourage member participation and foster interaction.</li>
-                                <li>Plan and coordinate onboarding activities to provide new members with a smooth introduction to the organization.</li>
-                                <li>Monitor membership growth and support initiatives that strengthen member engagement and community involvement.</li>
-                            </ul>
+
+                            <div class="experience-title-group">
+                                <p class="experience-header-date">Sep 2026 &ndash; Present</p>
+                                <h3 class="timeline-role">Membership Lead - Relations Department</h3>
+                                <p class="timeline-org">Cisco NetConnect PUP</p>
+                                <p class="experience-summary">Directing membership recruitment campaigns, student onboarding pathways, and department communications to foster an engaged network of networking and systems engineering enthusiasts across PUP.</p>
+                                <div class="experience-tags">
+                                    <span class="experience-tag">Community Relations</span>
+                                    <span class="experience-tag">Student Leadership</span>
+                                    <span class="experience-tag">Network Systems</span>
+                                </div>
+                            </div>
+
+                            <div class="experience-toggle-action" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <div class="experience-panel" id="exp-panel-2" role="region" aria-labelledby="exp-trigger-2">
+                            <div class="experience-panel-inner">
+                                <div class="experience-responsibilities">
+                                    <h4 class="experience-subheading">Key Responsibilities &amp; Highlights</h4>
+                                    <ul class="timeline-details">
+                                        <li>Oversee membership growth and onboarding initiatives of Cisco NetConnect PUP – Manila.</li>
+                                        <li>Develop and implement recruitment strategies to attract and engage potential members.</li>
+                                        <li>Set recruitment goals and identify effective channels for reaching and connecting with students.</li>
+                                        <li>Conceptualize and organize engaging activities during events to encourage member participation and foster interaction.</li>
+                                        <li>Plan and coordinate onboarding activities to provide new members with a smooth introduction to the organization.</li>
+                                        <li>Monitor membership growth and support initiatives that strengthen member engagement and community involvement.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="experience-gallery" data-gallery>
+                                    <div class="gallery-header">
+                                        <div class="gallery-header-left">
+                                            <span class="gallery-title">Activity Highlights</span>
+                                            <span class="gallery-count">&bull; 4 Images</span>
+                                        </div>
+                                        <div class="gallery-nav-controls" aria-label="Cisco NetConnect PUP gallery navigation">
+                                            <button type="button" class="gallery-nav-btn gallery-prev" aria-label="Previous image" disabled>&larr;</button>
+                                            <button type="button" class="gallery-nav-btn gallery-next" aria-label="Next image">&rarr;</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="gallery-track-container" tabindex="0" role="region" aria-label="Cisco NetConnect PUP gallery, horizontally scrollable. Use left and right arrow keys to browse.">
+                                        <div class="gallery-track">
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/cisco-event-01.svg" alt="Cisco NetConnect PUP - Annual General Assembly &amp; Orientation" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/cisco-event-02.svg" alt="Cisco NetConnect PUP - Membership Recruitment Drive" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/cisco-event-03.svg" alt="Cisco NetConnect PUP - Network Infrastructure Workshop" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/cisco-event-04.svg" alt="Cisco NetConnect PUP - Relations Department Onboarding Session" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="timeline-row">
-                        <div class="timeline-meta">
-                            <p class="timeline-date">August 2026 &ndash; Present</p>
-                            <span class="timeline-badge">Organization</span>
-                            <div class="timeline-logo-wrap">
-                                <img src="assets/logos/mcc.png" alt="Microsoft Campus Club PUP logo" width="120" height="120" class="timeline-logo logo-rounded" loading="lazy">
+                    <!-- Experience Item 03: Microsoft Campus Club PUP -->
+                    <article class="timeline-row experience-item" id="exp-item-3" data-experience-item>
+                        <button type="button" class="experience-trigger" id="exp-trigger-3" aria-expanded="false" aria-controls="exp-panel-3">
+                            <div class="experience-logo-col">
+                                <img src="assets/logos/mcc.png" alt="Microsoft Campus Club PUP logo" width="140" height="140" class="timeline-logo logo-rounded" loading="lazy">
                             </div>
-                        </div>
-                        <div class="timeline-body">
-                            <h3 class="timeline-role">Marketing Communications Officer</h3>
-                            <p class="timeline-org">Microsoft Campus Club PUP</p>
-                            <ul class="timeline-details">
-                                <li>Manage and publish posts on the organization's official social media pages.</li>
-                                <li>Assist in documenting events through photo and video recording.</li>
-                                <li>Create and edit reels and other engaging content for the organization's social media platforms.</li>
-                                <li>Coordinate with members and other departments for content and event-related activities.</li>
-                                <li>Communicate with team members to ensure smooth coordination and execution of activities.</li>
-                                <li>Support promotional efforts and contribute to increasing community engagement through digital content.</li>
-                            </ul>
+
+                            <div class="experience-title-group">
+                                <p class="experience-header-date">Aug 2026 &ndash; Present</p>
+                                <h3 class="timeline-role">Marketing Communications Officer</h3>
+                                <p class="timeline-org">Microsoft Campus Club PUP</p>
+                                <p class="experience-summary">Overseeing digital storytelling and public relations across social media channels, producing multimedia assets and event documentation to amplify organization outreach and engagement.</p>
+                                <div class="experience-tags">
+                                    <span class="experience-tag">Marketing Strategy</span>
+                                    <span class="experience-tag">Visual Communications</span>
+                                    <span class="experience-tag">Student Outreach</span>
+                                </div>
+                            </div>
+
+                            <div class="experience-toggle-action" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </button>
+
+                        <div class="experience-panel" id="exp-panel-3" role="region" aria-labelledby="exp-trigger-3">
+                            <div class="experience-panel-inner">
+                                <div class="experience-responsibilities">
+                                    <h4 class="experience-subheading">Key Responsibilities &amp; Highlights</h4>
+                                    <ul class="timeline-details">
+                                        <li>Manage and publish posts on the organization's official social media pages.</li>
+                                        <li>Assist in documenting events through photo and video recording.</li>
+                                        <li>Create and edit reels and other engaging content for the organization's social media platforms.</li>
+                                        <li>Coordinate with members and other departments for content and event-related activities.</li>
+                                        <li>Communicate with team members to ensure smooth coordination and execution of activities.</li>
+                                        <li>Support promotional efforts and contribute to increasing community engagement through digital content.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="experience-gallery" data-gallery>
+                                    <div class="gallery-header">
+                                        <div class="gallery-header-left">
+                                            <span class="gallery-title">Activity Highlights</span>
+                                            <span class="gallery-count">&bull; 5 Images</span>
+                                        </div>
+                                        <div class="gallery-nav-controls" aria-label="Microsoft Campus Club PUP gallery navigation">
+                                            <button type="button" class="gallery-nav-btn gallery-prev" aria-label="Previous image" disabled>&larr;</button>
+                                            <button type="button" class="gallery-nav-btn gallery-next" aria-label="Next image">&rarr;</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="gallery-track-container" tabindex="0" role="region" aria-label="Microsoft Campus Club PUP gallery, horizontally scrollable. Use left and right arrow keys to browse.">
+                                        <div class="gallery-track">
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/mcc-media-01.svg" alt="Microsoft Campus Club PUP - Annual Tech Summit Video Coverage" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/mcc-media-02.svg" alt="Microsoft Campus Club PUP - Digital Media &amp; Content Production" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/mcc-media-03.svg" alt="Microsoft Campus Club PUP - Community Student Showcase" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/mcc-media-04.svg" alt="Microsoft Campus Club PUP - Social Media Promotional Campaign" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                            <div class="gallery-item">
+                                                <img src="assets/experience/placeholders/mcc-media-05.svg" alt="Microsoft Campus Club PUP - Executive Board Strategy Session" class="gallery-img" width="640" height="360" loading="lazy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -778,6 +940,104 @@
                 window.addEventListener('resize', updateButtonStates, { passive: true });
                 updateButtonStates();
             }
+        })();
+
+        // Experience Accordion & Horizontal Gallery Controller
+        (function() {
+            const accordion = document.getElementById('experience-accordion');
+            if (!accordion) return;
+
+            const items = accordion.querySelectorAll('.experience-item');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+            // In-memory 16:9 neutral fallback for broken images to strictly prevent layout shifts
+            const brokenImageSvg = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23ede8df'/%3E%3Crect x='0.5' y='0.5' width='639' height='359' fill='none' stroke='%23d9d4c9' stroke-width='1'/%3E%3Ctext x='320' y='185' text-anchor='middle' font-family='sans-serif' font-size='13' font-weight='500' fill='%237a766d'%3EImage Unavailable%3C/text%3E%3C/svg%3E";
+
+            function setupGallery(galleryEl) {
+                const track = galleryEl.querySelector('.gallery-track-container');
+                const prevBtn = galleryEl.querySelector('.gallery-prev');
+                const nextBtn = galleryEl.querySelector('.gallery-next');
+
+                if (!track || !prevBtn || !nextBtn) return null;
+
+                // Handle any broken images gracefully without panel height layout shifts
+                galleryEl.querySelectorAll('.gallery-img').forEach((img) => {
+                    img.addEventListener('error', function() {
+                        if (this.dataset.hasFallback) return;
+                        this.dataset.hasFallback = 'true';
+                        this.src = brokenImageSvg;
+                    });
+                });
+
+                const getScrollStep = () => {
+                    const firstItem = track.querySelector('.gallery-item');
+                    if (!firstItem) return 300;
+                    const innerTrack = track.querySelector('.gallery-track');
+                    const gap = innerTrack ? (parseFloat(window.getComputedStyle(innerTrack).gap) || 16) : 16;
+                    return firstItem.offsetWidth + gap;
+                };
+
+                const updateControls = () => {
+                    const maxScroll = track.scrollWidth - track.clientWidth;
+                    if (maxScroll <= 4) {
+                        prevBtn.disabled = true;
+                        nextBtn.disabled = true;
+                        return;
+                    }
+                    prevBtn.disabled = track.scrollLeft <= 4;
+                    nextBtn.disabled = track.scrollLeft >= maxScroll - 4;
+                };
+
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    track.scrollBy({ left: -getScrollStep(), behavior });
+                });
+
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    track.scrollBy({ left: getScrollStep(), behavior });
+                });
+
+                // Accessible left/right keyboard navigation when track container has focus
+                track.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        track.scrollBy({ left: -getScrollStep(), behavior });
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        track.scrollBy({ left: getScrollStep(), behavior });
+                    }
+                });
+
+                track.addEventListener('scroll', updateControls, { passive: true });
+                window.addEventListener('resize', updateControls, { passive: true });
+
+                updateControls();
+                return updateControls;
+            }
+
+            // Bind each accordion item for independent, smooth toggling
+            items.forEach((item) => {
+                const trigger = item.querySelector('.experience-trigger');
+                const galleryEl = item.querySelector('.experience-gallery');
+                const updateGallery = galleryEl ? setupGallery(galleryEl) : null;
+
+                if (trigger) {
+                    trigger.addEventListener('click', () => {
+                        const isExpanded = item.classList.contains('is-expanded');
+                        const willExpand = !isExpanded;
+
+                        item.classList.toggle('is-expanded', willExpand);
+                        trigger.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
+
+                        if (willExpand && updateGallery) {
+                            requestAnimationFrame(updateGallery);
+                            setTimeout(updateGallery, 400);
+                        }
+                    });
+                }
+            });
         })();
 
         // 0. SITE PRELOADER (Wordmark Typing & Morph Controller)

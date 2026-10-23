@@ -1773,6 +1773,489 @@ nav a::after {
     max-width: none;
 }
 
+
+/* --- Experience Accordion & Interactive Gallery Strip --- */
+:root {
+    --exp-row-min-h: 207px;
+    --exp-logo-size: 140px;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --exp-row-min-h: 150px;
+    }
+
+    .experience-tags {
+        display: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --exp-row-min-h: 120px;
+        --exp-logo-size: clamp(64px, 15vw, 88px);
+    }
+
+    .experience-summary {
+        display: none !important;
+    }
+}
+
+.experience-item.timeline-row {
+    display: flex;
+    flex-direction: column;
+    padding-block: 0;
+    border-bottom: 1px solid var(--line);
+    border-top: none;
+}
+
+.experience-list .experience-item:first-child {
+    border-top: 1px solid var(--line);
+}
+
+/* 3-Column Header Trigger Button: [logo] [title + company] [details toggle] */
+.experience-trigger {
+    display: grid;
+    grid-template-columns: var(--exp-logo-size) minmax(0, 1fr) auto;
+    column-gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: center;
+    width: 100%;
+    padding-block: clamp(1.25rem, 2vh, 1.5rem);
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.experience-item:not(.is-expanded) .experience-trigger {
+    min-height: var(--exp-row-min-h);
+}
+
+.experience-item.is-expanded .experience-trigger {
+    min-height: auto;
+}
+
+.experience-trigger:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+}
+
+/* Column 1: Proportional Fixed Logo */
+.experience-logo-col {
+    width: var(--exp-logo-size);
+    height: var(--exp-logo-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+}
+
+.experience-logo-col .timeline-logo {
+    width: var(--exp-logo-size);
+    height: var(--exp-logo-size);
+    object-fit: cover;
+    display: block;
+    flex: none;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.timeline-logo.logo-circle {
+    border-radius: 50%;
+}
+
+.timeline-logo.logo-rounded {
+    border-radius: 20%;
+}
+
+/* Column 2: Enriched Text Block (Vertically centered against logo) */
+.experience-title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.experience-header-date {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+    line-height: 1;
+    margin: 0;
+}
+
+.experience-title-group .timeline-role {
+    font-family: var(--font-sans);
+    font-size: clamp(1.2rem, 1.6vw, 1.35rem);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin: 0;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-title-group .timeline-org {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.experience-summary {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    margin: 0;
+    max-height: 28px;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                line-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Option A: Summary unlocks into the natural multi-line description beside the logo */
+.experience-item.is-expanded .experience-summary {
+    white-space: normal;
+    text-overflow: clip;
+    max-height: 200px;
+    line-height: 1.68;
+    color: var(--ink-muted);
+    margin-top: 0.25rem;
+}
+
+.experience-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 0.5rem;
+    align-items: center;
+    max-height: 32px;
+}
+
+.experience-item.is-expanded .experience-tags {
+    margin-top: 0.25rem;
+}
+
+.experience-tag {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-subtle);
+    background-color: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 3px 8px;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Column 3: Details Toggle (Square Icon Button) */
+.experience-toggle-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background-color: transparent;
+    color: var(--ink);
+    align-self: center;
+    flex-shrink: 0;
+    transition: border-color var(--duration-micro) var(--ease-out),
+                background-color var(--duration-micro) var(--ease-out),
+                color var(--duration-micro) var(--ease-out);
+}
+
+.experience-toggle-action svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+    transform-origin: center center;
+    transform: rotate(0deg);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-item.is-expanded .experience-toggle-action svg {
+    transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .experience-trigger:hover .experience-toggle-action {
+        border-color: var(--ink);
+        background-color: var(--ink);
+        color: var(--bg);
+    }
+
+    .experience-trigger:hover .timeline-role {
+        color: #000;
+    }
+}
+
+/* Accordion Panel Grid: 0fr -> 1fr */
+.experience-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-item.is-expanded .experience-panel {
+    grid-template-rows: 1fr;
+}
+
+/* Inner wrapper: ALL padding lives inside this wrapper (min-height: 0; overflow: hidden) */
+.experience-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+    margin-left: calc(var(--exp-logo-size) + clamp(1rem, 2vw, 1.5rem));
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* On open: pure, anchored opacity fade matching the grid unfolding */
+.experience-item.is-expanded .experience-panel-inner {
+    opacity: 1;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* First Line in Panel: Date & Badge Meta Line */
+.experience-meta-line {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 0;
+    padding-top: 0.75rem;
+}
+
+
+.experience-meta-line .timeline-date {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.experience-meta-line .timeline-badge {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    margin: 0;
+}
+
+.meta-separator {
+    color: var(--ink-subtle);
+    opacity: 0.6;
+}
+
+.experience-lead {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.68;
+    color: var(--ink-muted);
+    max-width: 65ch;
+    margin: 0;
+    padding-top: 0.75rem;
+}
+
+.experience-responsibilities {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.experience-subheading {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+    margin: 0;
+}
+
+/* --- Unboxed Horizontal Image Gallery Strip --- */
+.experience-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 0.5rem;
+    padding-bottom: clamp(1.75rem, 3.5vh, 2.5rem);
+    min-width: 0;
+    width: 100%;
+}
+
+.gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.25rem;
+}
+
+.gallery-header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.gallery-title {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-subtle);
+}
+
+.gallery-count {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--ink-subtle);
+    opacity: 0.8;
+}
+
+.gallery-nav-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.gallery-nav-btn {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color var(--duration-micro) var(--ease-out),
+                color var(--duration-micro) var(--ease-out),
+                border-color var(--duration-micro) var(--ease-out),
+                transform var(--duration-micro) var(--ease-out);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.gallery-nav-btn:active:not(:disabled) {
+    transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .gallery-nav-btn:hover {
+        border-color: var(--ink);
+        background-color: var(--ink);
+        color: var(--bg);
+        transform: scale(1.04);
+    }
+}
+
+.gallery-nav-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.gallery-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+    border-color: var(--line);
+    background-color: transparent;
+    color: var(--ink-subtle);
+}
+
+/* Unboxed Image Track Container */
+.gallery-track-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+    padding-block: 4px;
+}
+
+.gallery-track-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-track-container:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    width: max-content;
+}
+
+.gallery-item {
+    flex: 0 0 clamp(260px, 31%, 360px);
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    min-width: 0;
+}
+
+/* Consistent 16:9 Aspect Ratio with Subtle Corner Rounding */
+.gallery-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background-color: #ede8df;
+    color: var(--ink-subtle);
+    font-size: 0.75rem;
+    box-sizing: border-box;
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .gallery-item:hover .gallery-img {
+        border-color: var(--ink-subtle);
+        transform: scale(1.015);
+    }
+}
+
 /* --- 12. Certificates Section --- */
 .certificates-grid {
     display: grid;
@@ -2108,85 +2591,21 @@ nav a::after {
     .certificates-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .gallery-item {
+        flex: 0 0 clamp(240px, 45%, 340px);
+    }
 }
 
 @media (max-width: 820px) {
-    .about-grid,
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .about-media,
-    .hero-media {
-        justify-content: flex-start;
-    }
-
-    .about-portrait-wrapper,
-    .hero-media .about-portrait-wrapper {
-        max-width: 320px;
-    }
-
-    .contact-grid,
-    .timeline-row,
-    .education-item,
-    .certificates-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .timeline-meta,
-    .education-meta {
-        width: 100%;
-    }
-
-    .stack-category-row {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding-block: 2rem;
-    }
-
-    .stack-category-info {
-        max-width: none;
-    }
-
-    .footer-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .contact-card {
-        padding: clamp(24px, 5vw, 32px);
+    .experience-panel-inner {
+        margin-left: 0;
     }
 }
 
 @media (max-width: 700px) {
-    .timeline-row,
-    .education-item {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding-block: 2rem;
-    }
-
-    .timeline-meta,
-    .education-meta {
-        width: 100%;
-    }
-
-    .timeline-badge {
-        margin-bottom: 14px;
-    }
-
-    .timeline-logo-wrap {
-        width: 88px;
-        height: 88px;
-        margin-bottom: 0.25rem;
-    }
-
-    .timeline-logo {
-        width: 88px;
-        height: 88px;
+    .experience-trigger {
+        column-gap: 0.85rem;
     }
 }
 
@@ -2432,5 +2851,3 @@ nav a::after {
         overflow: auto !important;
     }
 }
-
-
