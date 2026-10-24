@@ -809,6 +809,10 @@ nav a::after {
     will-change: opacity, transform;
 }
 
+.js-loaded #education .education-item:nth-child(2) {
+    transition-delay: 180ms;
+}
+
 .js-loaded #education.is-revealed .education-item {
     opacity: 1;
     transform: translateY(0);
@@ -1201,11 +1205,11 @@ nav a::after {
 
 /* Horizontal scrollable track (Ghost Rail: invisible scrollbar, zero clutter) */
 .projects-grid {
+    position: relative;
     display: flex;
     gap: clamp(20px, 2.5vw, 32px);
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     padding-top: 8px;
     padding-bottom: 0.75rem;
@@ -1233,6 +1237,10 @@ nav a::after {
                 border-color 200ms ease;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+}
+
+.project-card:last-child {
+    scroll-snap-align: end;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1785,9 +1793,17 @@ nav a::after {
 }
 
 .education-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(210px, 0.75fr);
+    column-gap: clamp(1.75rem, 3.5vw, 3rem);
+    row-gap: 1.25rem;
+    align-items: center;
+    min-width: 0;
+}
+
+.education-main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     min-width: 0;
 }
 
@@ -1798,6 +1814,58 @@ nav a::after {
     line-height: 1.68;
     max-width: 65ch;
     margin: 0;
+}
+
+.education-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding-left: clamp(1.25rem, 2.5vw, 2.25rem);
+    border-left: 1px solid var(--line);
+}
+
+.education-period {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.education-date {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+
+.education-location {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.35;
+}
+
+.education-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+@media (max-width: 860px) {
+    .education-body {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .education-side {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 0.65rem;
+        border-top: 1px dashed var(--line);
+    }
 }
 
 
@@ -2246,6 +2314,7 @@ nav a::after {
 }
 
 .gallery-track {
+    position: relative;
     display: flex;
     gap: 16px;
     align-items: stretch;
@@ -2254,10 +2323,9 @@ nav a::after {
 
 .gallery-item {
     flex: 0 0 clamp(260px, 31%, 360px);
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
     min-width: 0;
 }
+
 
 /* Consistent 16:9 Aspect Ratio with Subtle Corner Rounding */
 .gallery-img {
