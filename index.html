@@ -96,7 +96,12 @@
         <div class="container header-row">
             <a class="wordmark" href="#hero">mrtn.riel</a>
 
-            <nav aria-label="Main Navigation">
+            <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+
+            <nav id="main-nav" class="main-nav" aria-label="Main Navigation">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
                 <a href="#stack">Stack</a>
@@ -900,7 +905,7 @@
          ================================================================= -->
     <footer class="site-footer">
         <div class="container footer-row">
-            <span class="wordmark">GABRIEL MARTIN</span>
+            <span class="wordmark">MRTN.RIEL</span>
             <p class="copyright">&copy; <time datetime="2026">2026</time> Gabriel Martin R. Manalo. All rights reserved.</p>
             <a href="#hero" class="back-link">Back to top <span>&uarr;</span></a>
         </div>
@@ -1418,7 +1423,7 @@
                         const deltaY = Math.round(vpCenterY - naturalCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        heroHeading.style.minWidth = `${Math.ceil(naturalRect.width)}px`;
+                        heroHeading.style.minWidth = `${Math.min(Math.ceil(naturalRect.width), window.innerWidth - 32)}px`; heroHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at exact center of the screen
                         heroHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         heroHeading.classList.add('is-active');
@@ -1655,7 +1660,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        aboutHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        aboutHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; aboutHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the About section
                         aboutHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         aboutHeading.classList.add('is-active');
@@ -1788,7 +1793,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        projectsHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        projectsHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; projectsHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Projects section
                         projectsHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         projectsHeading.classList.add('is-active');
@@ -1921,7 +1926,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        stackHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        stackHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; stackHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Stack section
                         stackHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         stackHeading.classList.add('is-active');
@@ -2054,7 +2059,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        experienceHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        experienceHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; experienceHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Experience section
                         experienceHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         experienceHeading.classList.add('is-active');
@@ -2187,7 +2192,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        educationHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        educationHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; educationHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Education section
                         educationHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         educationHeading.classList.add('is-active');
@@ -2320,7 +2325,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        certificatesHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        certificatesHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; certificatesHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Certificates section
                         certificatesHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         certificatesHeading.classList.add('is-active');
@@ -2453,7 +2458,7 @@
                         const deltaY = Math.round(containerCenterY - titleCenterY);
 
                         // Fix min-width during centered typing to prevent horizontal jitter
-                        contactHeading.style.minWidth = `${Math.ceil(titleRect.width)}px`;
+                        contactHeading.style.minWidth = `${Math.min(Math.ceil(titleRect.width), window.innerWidth - 32)}px`; contactHeading.style.maxWidth = "calc(100vw - 32px)";
                         // Position heading at center of the Contact section
                         contactHeading.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
                         contactHeading.classList.add('is-active');
@@ -2526,6 +2531,52 @@
                         typeContact();
                     }
                 }
+            }
+        })();
+    </script>
+
+    <script>
+        // Mobile Navigation Toggle Controller
+        (function() {
+            const navToggle = document.getElementById('mobile-nav-toggle');
+            const siteHeader = document.querySelector('.site-header');
+            const mainNav = document.getElementById('main-nav');
+            if (navToggle && siteHeader && mainNav) {
+                const toggleMenu = (open) => {
+                    const isOpen = typeof open === 'boolean' ? open : !siteHeader.classList.contains('is-open');
+                    siteHeader.classList.toggle('is-open', isOpen);
+                    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                };
+
+                navToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        toggleMenu(false);
+                    });
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && siteHeader.classList.contains('is-open')) {
+                        toggleMenu(false);
+                        navToggle.focus();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (siteHeader.classList.contains('is-open') && !siteHeader.contains(e.target)) {
+                        toggleMenu(false);
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && siteHeader.classList.contains('is-open')) {
+                        toggleMenu(false);
+                    }
+                }, { passive: true });
             }
         })();
     </script>
