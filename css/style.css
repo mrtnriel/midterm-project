@@ -384,6 +384,7 @@ nav a::after {
     justify-content: center;
     padding-block: clamp(3rem, 8vh, 6rem);
     position: relative;
+    scroll-margin-top: var(--header-height);
 }
 
 .hero-grid {
@@ -547,6 +548,7 @@ nav a::after {
 .section {
     border-top: 1px solid var(--line);
     padding-block: clamp(64px, 10vh, 120px);
+    scroll-margin-top: var(--header-height);
 }
 
 .section-heading {

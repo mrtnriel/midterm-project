@@ -1243,18 +1243,7 @@
             document.documentElement.scrollTop = 0;
             if (document.body) document.body.scrollTop = 0;
 
-            window.addEventListener('beforeunload', () => {
-                if ('scrollRestoration' in history) {
-                    history.scrollRestoration = 'manual';
-                }
-                window.scrollTo(0, 0);
-            });
-            window.addEventListener('pagehide', () => {
-                if ('scrollRestoration' in history) {
-                    history.scrollRestoration = 'manual';
-                }
-                window.scrollTo(0, 0);
-            });
+
 
             const preloader = document.getElementById('preloader');
             const headerWordmark = document.querySelector('.site-header .wordmark');
@@ -1347,15 +1336,17 @@
             // Small initial pause before typing starts so cursor blinks cleanly once
             setTimeout(typeChar, 140);
 
-            window.addEventListener('pageshow', () => {
-                if ('scrollRestoration' in history) {
-                    history.scrollRestoration = 'manual';
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted) {
+                    if ('scrollRestoration' in history) {
+                        history.scrollRestoration = 'manual';
+                    }
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    if (document.body) document.body.scrollTop = 0;
+                    const siteHeader = document.querySelector('.site-header');
+                    if (siteHeader) siteHeader.classList.add('is-ready');
                 }
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                if (document.body) document.body.scrollTop = 0;
-                const siteHeader = document.querySelector('.site-header');
-                if (siteHeader) siteHeader.classList.add('is-ready');
             });
 
             window.addEventListener('load', () => {
@@ -1483,11 +1474,11 @@
                     }
 
                     window.addEventListener('pageshow', (event) => {
-                        window.scrollTo(0, 0);
-                        document.documentElement.scrollTop = 0;
-                        if (document.body) document.body.scrollTop = 0;
-                        document.documentElement.classList.remove('is-loading-scroll');
                         if (event.persisted) {
+                            window.scrollTo(0, 0);
+                            document.documentElement.scrollTop = 0;
+                            if (document.body) document.body.scrollTop = 0;
+                            document.documentElement.classList.remove('is-loading-scroll');
                             // Back-forward cache restore
                             if (textEl) textEl.textContent = fullText;
                             if (cursor) cursor.classList.add('is-finished');
@@ -2536,6 +2527,21 @@
     </script>
 
     <script>
+        // Smooth Top Alignment for Brand Wordmark & Back-to-Top Links
+        (function() {
+            document.querySelectorAll('a[href="#hero"]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (history.pushState) {
+                        history.pushState(null, '', '#hero');
+                    } else {
+                        location.hash = '#hero';
+                    }
+                });
+            });
+        })();
+
         // Mobile Navigation Toggle Controller
         (function() {
             const navToggle = document.getElementById('mobile-nav-toggle');
