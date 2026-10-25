@@ -2965,6 +2965,8 @@ nav a::after {
         gap: 2.25rem;
     }
 
+
+
     .contact-card {
         padding: clamp(20px, 4vw, 32px);
     }

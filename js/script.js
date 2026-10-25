@@ -1688,3 +1688,24 @@ if ('scrollRestoration' in history) {
                 }, { passive: true });
             }
         })();
+// Smart Email Routing Controller (Gmail Web Compose on Desktop with Mobile mailto: fallback)
+(function() {
+    const emailLinks = document.querySelectorAll('.email-compose-link, .work-with-me-btn');
+    if (!emailLinks.length) return;
+
+    emailLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const email = 'martinramirezasdw@gmail.com';
+            const subject = encodeURIComponent('Collaboration Inquiry — Gabriel Martin');
+            const body = encodeURIComponent('Hi Martin,\n\nI came across your portfolio and would like to discuss a collaboration opportunity...');
+
+            if (isMobile) {
+                // On mobile devices, native mail app (iOS Mail / Android Gmail) provides the smoothest flow
+                e.preventDefault();
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            }
+            // On desktop, default href to https://mail.google.com/mail/?view=cm&fs=1&... opens in a new tab smoothly
+        });
+    });
+})();
