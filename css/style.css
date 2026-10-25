@@ -1028,6 +1028,76 @@ nav a::after {
     margin-bottom: 0;
 }
 
+/* About Narrative Social Media Links */
+.about-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: clamp(1.5rem, 3vh, 2rem);
+}
+
+.about-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    background-color: transparent;
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out),
+                background-color var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out),
+                transform var(--duration-base) var(--ease-out);
+    will-change: transform, background-color, border-color;
+}
+
+.about-social-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    transition: transform var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .about-social-link:hover {
+        border-color: var(--ink);
+        background-color: var(--ink);
+        color: var(--bg);
+        transform: translateY(-2px);
+    }
+
+    .about-social-link:hover .about-social-icon {
+        transform: scale(1.06);
+    }
+}
+
+.about-social-link:active {
+    transform: translateY(0);
+}
+
+.about-social-link:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* Staggered Fade-Up Scroll Reveal for About Socials */
+.js-loaded .about-narrative .about-socials {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 340ms;
+    will-change: opacity, transform;
+}
+
+.js-loaded .about-narrative.is-revealed .about-socials {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 .about-narrative .narrative-lead {
     font-size: clamp(1.25rem, 2.5vw, 1.45rem);
     color: var(--ink);
@@ -2505,20 +2575,34 @@ nav a::after {
 }
 
 .channel-value {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.4vw, 1rem);
     color: var(--ink);
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 9px;
     transition: opacity var(--duration-base) var(--ease-out),
                 transform var(--duration-base) var(--ease-out);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
-.channel-value span {
+.channel-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    color: var(--ink-subtle);
+    stroke: currentColor;
+    transition: color var(--duration-base) var(--ease-out),
+                transform var(--duration-base) var(--ease-out);
+}
+
+.channel-text {
+    display: inline-block;
+}
+
+.channel-arrow {
     display: inline-block;
     transition: transform var(--duration-base) var(--ease-out);
     backface-visibility: hidden;
@@ -2534,11 +2618,15 @@ nav a::after {
         transform: translate3d(6px, 0, 0);
     }
 
-    .channel-value:hover {
-        opacity: 0.7;
+    .channel-item:hover .channel-icon {
+        color: var(--ink);
     }
 
-    .channel-value:hover span {
+    .channel-value:hover {
+        opacity: 0.85;
+    }
+
+    .channel-value:hover .channel-arrow {
         transform: translate3d(4px, 0, 0);
     }
 }

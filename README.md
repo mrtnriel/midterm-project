@@ -1,72 +1,95 @@
 # Gabriel Martin R. Manalo — Portfolio
 
-> A personal portfolio built with a quiet, confident, typography-first **Editorial Minimal Design** aesthetic. Developed with semantic HTML5, modern CSS3, and vanilla JavaScript.
+> An institutional, typography-first **Editorial Minimal Design** personal portfolio engineered with semantic HTML5, modern CSS3 custom properties, and modular Vanilla JavaScript (ES6+).
+
+---
+
+## ✦ Table of Contents
+
+- [Overview](#-overview)
+- [Design Philosophy & Aesthetic Manifesto](#-design-philosophy--aesthetic-manifesto)
+- [Design Tokens & Color Palette](#-design-tokens--color-palette)
+- [Typography & Spatial System](#-typography--spatial-system)
+- [Key Features & Engineering Architecture](#-key-features--engineering-architecture)
+  - [1. FLIP-Morph Preloader](#1-flip-morph-preloader)
+  - [2. Scroll-Synchronized Typewriter Engine](#2-scroll-synchronized-typewriter-engine)
+  - [3. Horizontal Snap Rail Projects Carousel](#3-horizontal-snap-rail-projects-carousel)
+  - [4. Interactive Experience Accordion & Galleries](#4-interactive-experience-accordion--galleries)
+  - [5. Categorized Tech Stack Matrix](#5-categorized-tech-stack-matrix)
+  - [6. Academic History & Verified Credentials](#6-academic-history--verified-credentials)
+  - [7. Smart Dual-Channel Email Routing](#7-smart-dual-channel-email-routing)
+  - [8. Mobile Navigation Drawer & Accessibility](#8-mobile-navigation-drawer--accessibility)
+- [Featured Works & Case Studies](#-featured-works--case-studies)
+- [Leadership & Experience](#-leadership--experience)
+- [Technology Matrix](#-technology-matrix)
+- [Project Structure](#-project-structure)
+- [Local Development & Usage](#-local-development--usage)
+- [Performance & Accessibility Standards](#-performance--accessibility-standards)
+- [Author & Contact Channels](#-author--contact-channels)
 
 ---
 
 ## ✦ Overview
 
-This project is the personal portfolio of **Gabriel Martin R. Manalo** (`mrtn.riel`), a BS Information Technology student at the Polytechnic University of the Philippines (PUP), aspiring full-stack software engineer, and database systems architect. 
+This repository hosts the official personal web portfolio of **Gabriel Martin R. Manalo** (`mrtn.riel`), a Bachelor of Science in Information Technology (BSIT) student and President's Lister at the **Polytechnic University of the Philippines (PUP)**.
 
-Rather than relying on generic modern web design cliches—such as neon gradients, heavy drop shadows, rounded pill buttons, or decorative illustrations—this portfolio embraces an **institutional, editorial-startup design language**. Hierarchy is established strictly through **type scale, typographic weight, hairline structures, and deliberate whitespace**.
+Rejecting common web design tropes—such as neon gradients, heavy drop shadows, rounded pill buttons, and gratuitous decorations—this portfolio is built from the ground up on the principles of **Swiss International Typographic Style**, high-end venture editorial layouts, and razor-sharp architectural geometry.
+
+Every visual hierarchy is established strictly through **type scale, typographic weight, hairline rules (1px), and deliberate whitespace**.
 
 ---
 
-## 🏛️ Aesthetic & Design Philosophy
+## 🏛️ Design Philosophy & Aesthetic Manifesto
 
-The site follows the **Editorial Minimal Design** manifesto, inspired by high-end venture studios, design accelerators, Swiss international typographic style, and modern editorial publications.
-
-### Core Principles
+The portfolio adheres to the **Editorial Minimal Design** philosophy:
 
 1. **Typography Does the Heavy Lifting**  
-   A single, robust neo-grotesque font family (**Inter**) drives the entire visual rhythm. Visual weight is articulated through massive display headlines paired with lighter, muted text rather than decorative icons or imagery.
-2. **Extreme Restraint**  
-   Two primary tones (Paper & Ink) supported by balanced grays. No gradients, no glassmorphism, no rainbow accents, and no gratuitous ornament.
-3. **Warmth Over Cold Digital Whites**  
-   Built on an off-white cream paper canvas (`#f6f2ea`) paired with a warm near-black ink (`#15130f`), evoking printed literature and archival paper rather than clinical screen interfaces.
-4. **Sharp, Utilitarian Geometry**  
-   Strict adherence to square corners (`border-radius: 0`). Buttons, input fields, image cards, and interactive controls all feature razor-sharp geometric edges.
-5. **Hairline Structural Architecture**  
-   Sections, columns, cards, and data ledgers are framed and separated by subtle 1px hairline rules (`#d9d4c9`). Borders are structural dividers, never decorative embellishments.
-6. **Space is the Luxury**  
-   Expansive padding, strong unified left-edge alignment, and deliberate breathing room create a calm, commanding presence.
-7. **Authentic Mechanical Accents**  
-   Standard system glyphs (`→`, `←`, `↑`, `•`) replace third-party icon libraries, providing an honest, tactile, and lightweight digital interface.
+   Driven entirely by the neo-grotesque font **Inter**. Headlines span massive display sizes with tight letter tracking (`-0.03em`), paired with justified editorial body text.
+2. **Warmth Over Clinical Whites**  
+   A warm cream paper canvas (`#f6f2ea`) paired with deep near-black ink (`#15130f`) evokes tactile printed broadsheets and archival paper rather than cold computer displays.
+3. **Sharp, Utilitarian Geometry**  
+   Strict adherence to razor-sharp zero border radii (`border-radius: 0`). Buttons, input boxes, image frames, and tags maintain crisp rectangular forms.
+4. **Hairline Structural Architecture**  
+   Dividers, card boundaries, and ledger rows use subtle 1px hairline rules (`#d9d4c9`). Borders define structural layout rather than decorative framing.
+5. **Space is the Luxury**  
+   Expansive layout padding (`clamp(20px, 5vw, 80px)`), unified left-edge alignment, and deliberate vertical rhythm yield a calm, commanding presence.
+6. **Authentic Mechanical Accents**  
+   System glyphs (`→`, `←`, `↑`, `•`) replace bloated third-party icon fonts for structural UI, while clean, inline SVG vector graphics represent technical brands and communication channels.
 
 ---
 
-## 🎨 Color Palette & Tokens
+## 🎨 Design Tokens & Color Palette
 
-The color system is defined via native CSS Custom Properties, curated for high contrast, legibility, and an organic paper-and-ink feel:
+The site uses native CSS Custom Properties (`:root`) with a high-contrast paper-and-ink palette:
 
-| Swatch | Token | Hex Code | Visual Role |
-|:---:|:---|:---|:---|
-| <img src="https://via.placeholder.com/20/f6f2ea/000000?text=+" width="20" height="20" alt="#f6f2ea" /> | `--bg` | `#f6f2ea` | **Canvas Paper**: Warm cream background providing soft contrast and reducing eye strain. |
-| <img src="https://via.placeholder.com/20/15130f/ffffff?text=+" width="20" height="20" alt="#15130f" /> | `--ink` | `#15130f` | **Primary Ink**: Deep near-black with subtle warm undertones for titles, primary actions, and borders. |
-| <img src="https://via.placeholder.com/20/55524b/ffffff?text=+" width="20" height="20" alt="#55524b" /> | `--ink-muted` | `#55524b` | **Editorial Body**: Balanced medium gray for long-form narrative paragraphs and readable descriptions. |
-| <img src="https://via.placeholder.com/20/7a766d/ffffff?text=+" width="20" height="20" alt="#7a766d" /> | `--ink-subtle` | `#7a766d` | **Subtle Accents**: Neutral stone gray for section indices (`01 / Background`), eyebrow headers, and metadata. |
-| <img src="https://via.placeholder.com/20/d9d4c9/000000?text=+" width="20" height="20" alt="#d9d4c9" /> | `--line` | `#d9d4c9` | **Hairline Rules**: 1px structural dividing lines across sections, grids, and containers. |
-| <img src="https://via.placeholder.com/20/ede8df/000000?text=+" width="20" height="20" alt="#ede8df" /> | `--card-bg` | `#ede8df` | **Parchment Surface**: Tonal step between paper and hairline used for contact panels and preview frames. |
+| Token | Hex Value | Role & Usage |
+|:---|:---|:---|
+| `--bg` | `#f6f2ea` | **Canvas Paper**: Warm off-white foundation reducing eye fatigue. |
+| `--ink` | `#15130f` | **Primary Ink**: Near-black warm ink for high-priority typography, solid buttons, and borders. |
+| `--ink-muted` | `#55524b` | **Editorial Body**: Balanced medium tone for comfortable reading across long paragraphs. |
+| `--ink-subtle` | `#7a766d` | **Metadata & Labels**: Neutral stone tone for section counters, dates, and category tags. |
+| `--line` | `#d9d4c9` | **Hairline Rules**: 1px structural dividing lines across cards, grids, and boundaries. |
+| `--card-bg` | `#ede8df` | **Parchment Surface**: Tonal step between paper and hairline used for media frames and tags. |
 
-### CSS Variables Implementation
+### CSS Variables Excerpt
 
 ```css
 :root {
     /* Color Palette */
-    --bg: #f6f2ea;          /* Warm cream / off-white paper */
-    --ink: #15130f;         /* Near-black, slightly warm */
-    --ink-muted: #55524b;   /* Body / narrative text */
-    --ink-subtle: #7a766d;  /* Navigation links, labels, captions */
-    --line: #d9d4c9;        /* 1px hairline dividers */
-    --card-bg: #ede8df;     /* Parchment fill for cards and visuals */
+    --bg: #f6f2ea;
+    --ink: #15130f;
+    --ink-muted: #55524b;
+    --ink-subtle: #7a766d;
+    --line: #d9d4c9;
+    --card-bg: #ede8df;
 
     /* Typography */
     --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
 
-    /* Spatial & Form Tokens */
+    /* Spatial Dimensions */
     --container: 1400px;
     --gutter: clamp(20px, 5vw, 80px);
-    --radius: 0;            /* Zero border radius throughout */
+    --radius: 0;
     --header-height: 80px;
 
     /* Motion Physics */
@@ -79,59 +102,110 @@ The color system is defined via native CSS Custom Properties, curated for high c
 
 ---
 
-## 🔤 Typography & Hierarchy
+## 🔤 Typography & Spatial System
 
-The entire site is powered by **Inter** (Google Fonts), treated with Swiss-style discipline:
-
-- **Display Hero Headline**: `clamp(2.25rem, 5.5vw + 0.5rem, 4.75rem)` with tight negative letter tracking (`-0.03em`) and dense line-height (`1.08`).
-- **Section Headers (`h2`)**: `clamp(2.25rem, 4vw, 3.5rem)` paired with numbered editorial section markers (`01 / Background`, `02 / Selected Works`, etc.).
-- **Narrative Leads**: `clamp(1.25rem, 2.5vw, 1.45rem)` in dark ink to ground the reader before delving into body copy.
-- **Body Copy**: `1.0625rem` rendered with justified inter-word spacing (`text-justify: inter-word; hyphens: auto`) creating an authentic editorial column aesthetic.
-- **Wordmarks & Meta Labels**: Set in small caps / uppercase with tracking (`letter-spacing: 0.04em - 0.08em`) to balance the large lowercase headlines.
+- **Hero Title**: `clamp(2.25rem, 5.5vw + 0.5rem, 4.75rem)` with tight tracking (`-0.03em`) and dense leading (`1.08`).
+- **Section Headers (`h2`)**: `clamp(2.25rem, 4vw, 3.5rem)` with uppercase numbered editorial markers (`01 / Background`, `02 / Selected Works`, etc.).
+- **Narrative Leads**: `clamp(1.25rem, 2.5vw, 1.45rem)` in dark ink to orient the reader.
+- **Editorial Body**: `1.0625rem` rendered with justified inter-word spacing (`text-justify: inter-word; hyphens: auto`).
+- **Metadata & Monospace Labels**: Uppercase micro-typography with open tracking (`letter-spacing: 0.04em - 0.08em`) balancing large display titles.
 
 ---
 
-## 📐 Signature UI Components & Design Details
+## ⚡ Key Features & Engineering Architecture
 
-### 1. Sticky Frosted Header
-- Translucent backdrop blur (`backdrop-filter: blur(12px)`) tinted with 65% cream opacity.
-- Minimal wordmark (`mrtn.riel`) aligned with navigation links and a square high-contrast CTA button.
-- Smooth directional hover underlines on links that scale outwards from origin.
+```mermaid
+flowchart TD
+    Preloader["FLIP-Morph Preloader (mrtn.riel)"] --> Header["Sticky Frosted Header & Brand Anchor"]
+    Header --> Hero["Hero Section (Gliding Typewriter Reveal)"]
+    Hero --> About["01 / Background (Narrative & Direct Socials)"]
+    About --> Projects["02 / Selected Works (Snap Rail Carousel)"]
+    Projects --> Stack["03 / Tooling (5-Category Tech Matrix)"]
+    Stack --> Experience["04 / History (Accessible Accordion + Media Rails)"]
+    Experience --> Education["05 / Academics (Institutional Seals & Honors)"]
+    Education --> Certs["06 / Credentials (DataCamp Verification)"]
+    Certs --> Contact["07 / Inquiries (Gmail / Outlook Smart Routing)"]
+```
 
-### 2. Architectural Offset Portrait Frame
-- The portrait photograph in the *About* section is framed by a detached hairline wireframe box offset by `16px` behind it.
-- On hover, the background wireframe glides outward to `20px` while darkening to `--ink`, creating tactile architectural depth without shadows.
+### 1. FLIP-Morph Preloader
+- Displays an editorial typewriter animation spelling out `mrtn.riel`.
+- Executes a FLIP (First, Last, Invert, Play) transition calculating the exact viewport bounding rectangle delta between the preloader center and the header brand logo, smoothly gliding and scaling into place.
+- Honors `prefers-reduced-motion` and incorporates graceful timeout fallbacks.
 
-### 3. Ghost Rail Projects Carousel
-- A distraction-free horizontal scroll container with hidden scrollbars (`scrollbar-width: none`).
-- Snapped scrolling (`scroll-snap-type: x mandatory`) allowing users to swipe naturally or use precision utilitarian arrow buttons (`←`, `→`).
-- Cards feature technical blueprint background grids, subtle corner framing brackets (`::before`, `::after`), bold typographic watermarks, and smooth screenshot zooms.
+### 2. Scroll-Synchronized Typewriter Engine
+- Utilizes `IntersectionObserver` to trigger typewriter heading generation and center-out gliding origin reveals as sections enter the viewport.
+- Smoothly preserves layout stability through fixed-height typographical reserves, avoiding layout shifts (CLS).
 
-### 4. Ledger-Style Experience & Education Timeline
-- A 2-column border-separated financial-ledger layout (`240px` timeline metadata on the left, descriptive accomplishments on the right).
-- On hover, rows highlight from `--line` to `--ink`, and the text translates subtly to the right by `8px`.
+### 3. Horizontal Snap Rail Projects Carousel
+- Custom scroll controller (`scroll-snap-type: x mandatory`) with hidden scrollbars for clean presentation.
+- Dynamic metric calculation adjusting for card widths, gap metrics, and container padding.
+- Interactive utilitarian navigation arrows (`←`, `→`) with real-time scroll boundary detection and automatic disabled state management.
 
-### 5. Architectural Tech Stack Matrix
-- A 4-column column-delimited grid with vertical hairline rules separating Front-End, Back-End, Databases, and Infrastructure & Tools.
-- Responsive breakdown into 2 columns on tablets and stacked rows on mobile.
+### 4. Interactive Experience Accordion & Galleries
+- Expandable leadership and work experience panels adhering to WAI-ARIA standards (`aria-expanded`, `aria-controls`, `role="region"`).
+- Smooth CSS height transitions with zero layout thrashing.
+- Each role contains an internal horizontal photo gallery with dedicated scroll navigation controls and touch-swipe support.
 
-### 6. Tactile Inverted Buttons & Micro-Interactions
-- Primary buttons feature solid `--ink` fill with `--bg` text, inverting cleanly on hover.
-- Secondary buttons feature hairline borders that fill on hover.
-- Active states include tactile spring scaling (`scale(0.95)`).
-- Trailing glyph arrows (`→`) translate smoothly (`translate3d(6px, 0, 0)`) on hover.
+### 5. Categorized Tech Stack Matrix
+- Structured across 5 core specializations: Frontend Core, Backend Core, Databases, Developer Tools, and AI Tools.
+- High-contrast SVG vector emblems with subtle hover lifting physics and descriptive domain summaries.
+
+### 6. Academic History & Verified Credentials
+- Institutional credentials featuring university seals (PUP, St. Patrick School of Quezon City).
+- Certificate preview cards with direct links to verified statements of accomplishment (DataCamp SQL certification).
+
+### 7. Smart Dual-Channel Email Routing
+- Desktop users clicking email links are routed directly into web compose windows for **Gmail** (`mail.google.com/mail/?view=cm...`) or **Outlook 365** (`outlook.office.com/mail/deeplink/compose...`).
+- Mobile devices automatically fallback to native system email handlers via `mailto:` URI schemes with pre-populated subjects and greeting bodies.
+
+### 8. Mobile Navigation Drawer & Accessibility
+- Full-screen mobile navigation drawer with frosted background blur, accessible toggle (`aria-expanded`), and auto-closing on link navigation.
+- Accessible keyboard skip links (`.skip-link`) pointing to `#main-content`.
+- High-contrast visible focus rings (`:focus-visible`) for complete keyboard navigation.
 
 ---
 
-## ⚡ Motion Physics & Animation System
+## 💼 Featured Works & Case Studies
 
-Animations follow natural spring mechanics rather than standard linear eases:
+| Project | Category | Technology Stack | Deliverables & Links |
+|:---|:---|:---|:---|
+| **SALN Submission Portal** | Full-Stack Web Application | Python (Flask), MySQL, JavaScript, HTML5, CSS3 | Secure public sector asset and liability declaration portal with role-based access. <br>• [Source Code](https://github.com/mrtnriel) |
+| **PUP Room Booking (PUPWESTO)** | UI/UX & HCI Architecture | Figma, Wireframing, User Research, Usability Testing | University facility reservation system addressing scheduling conflicts and room utilization. <br>• [Figma Interactive Prototype](https://www.figma.com/proto/gqwc5tSAWlLeSLLpxWD74U/High-Fidelity-Wireframe--Group-4-?node-id=273-3882&p=f&viewport=97%2C97%2C0.21&t=aOiHw4stNh1wiOF5-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=273%3A3882&page-id=251%3A2134) |
+| **Koso Lifewear** | Front-End Development | React, Vite, Tailwind CSS, TypeScript | Minimalist Japanese-inspired apparel e-commerce interface with fluid spring physics. <br>• [Live Deployment](https://koso-lifewear.vercel.app/) |
+| **Axis Studio** | 3D Front-End Customizer | React 19, Three.js, Web Audio API, Vite, Tailwind CSS | Interactive 3D mechanical keyboard configurator with dynamic materials and realistic acoustic feedback. <br>• [Live Deployment](https://axis-studio-seven.vercel.app/) |
 
-- **Custom Spring Curve**: `cubic-bezier(0.16, 1, 0.3, 1)` provides swift acceleration and smooth deceleration.
-- **Scroll-Driven Reveal Observer**: An `IntersectionObserver` smoothly fades and scales content into view (`translate3d(0, 48px, 0)` to `0`) with a reversible exit effect when scrolled past.
-- **Progressive Stagger Delays**: Multi-element grids and timeline entries cascade into view with micro-staggers (90ms, 180ms, 270ms, 360ms).
-- **Graceful Degradation**: If JavaScript is disabled, styles fallback instantly so content remains completely visible.
-- **Reduced Motion Support**: Strict `@media (prefers-reduced-motion: reduce)` rules disable all transitions, keyframe animations, and transforms for users requesting reduced motion.
+---
+
+## 🎖️ Leadership & Experience
+
+- **AWS Cloud Club PUP** — *Associate Lead for the Web Development Department (Skill Builder Department)* `[Sep 2024 – Present]`  
+  Directing technical web curriculum, mentoring student developers in modern web standards, and leading hands-on cloud development workshops.
+- **Cisco NetConnect PUP** — *Membership Lead (Relations Department)* `[Sep 2024 – Present]`  
+  Spearheading member onboarding, technical community engagement, and cross-departmental coordination for networking initiatives.
+- **Microsoft Campus Club PUP** — *Marketing Communications Officer* `[Sep 2024 – Present]`  
+  Crafting technical campaign copy, announcements, and visual assets for developer events and workshops.
+
+---
+
+## 🛠️ Technology Matrix
+
+```
+┌─────────────────┬─────────────────────────────────────────────────────────┐
+│ Domain          │ Technologies & Tools                                    │
+├─────────────────┼─────────────────────────────────────────────────────────┤
+│ Frontend Core   │ HTML5, CSS3 (Custom Properties), JavaScript (ES6+),     │
+│                 │ React, Vite, Tailwind CSS, Three.js                     │
+├─────────────────┼─────────────────────────────────────────────────────────┤
+│ Backend Core    │ Node.js, Python (Flask), Java, C++                      │
+├─────────────────┼─────────────────────────────────────────────────────────┤
+│ Databases       │ MySQL, PostgreSQL, TiDB Cloud (Distributed SQL), MongoDB│
+├─────────────────┼─────────────────────────────────────────────────────────┤
+│ Developer Tools │ Git, GitHub, VS Code, Vercel, Figma                     │
+├─────────────────┼─────────────────────────────────────────────────────────┤
+│ AI & Workflows  │ Antigravity CLI, Google Gemini, Anthropic Claude,       │
+│                 │ OpenAI ChatGPT                                          │
+└─────────────────┴─────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -139,80 +213,94 @@ Animations follow natural spring mechanics rather than standard linear eases:
 
 ```
 .
-├── index.html                           # Semantic HTML5 single-page structure
-├── README.md                            # Comprehensive project & aesthetic documentation
+├── index.html                           # Semantic single-page HTML5 architecture
+├── README.md                            # Project documentation & engineering manual
 ├── css/
-│   └── style.css                        # Complete stylesheet, design tokens, and media queries
+│   └── style.css                        # Design tokens, responsive typography, and layouts
+├── js/
+│   └── script.js                        # Preloader, FLIP morph, carousels, accordions, and routing
 ├── skill/
-│   └── editorial-minimal-design.md      # Foundational design system reference guide
+│   └── editorial-minimal-design.md      # Aesthetic guidelines and design system tokens
 └── assets/
-    ├── certificates/                    # Certifications (PDFs & WebP representations)
+    ├── certificates/                    # Statements of accomplishment (PDF & WebP)
     │   ├── Introduction to SQL - DataCamp.webp
     │   └── SQL certificate.pdf
+    ├── cv/                              # Downloadable Curriculum Vitae
+    │   └── manalo_cv.pdf
+    ├── experience/                      # Leadership photo assets and galleries
+    │   └── placeholders/
+    │       ├── aws/                     # AWS Cloud Club event imagery
+    │       ├── cisco/                   # Cisco NetConnect event imagery
+    │       └── mcc/                     # Microsoft Campus Club event imagery
+    ├── favicon/                         # Multi-resolution favicons and site icons
+    ├── logos/                           # Institutional university and school seals
+    │   ├── pup.webp
+    │   └── st-patrick.png
     ├── me/                              # Author portrait photography
     │   └── Profile.jpg
-    └── proj/                            # Project preview mockups and screenshots
-        ├── axis-studio.webp
-        ├── figma.png
-        ├── koso-preview.webp
-        └── SALN System.webp
+    ├── proj/                            # Project preview mockups and screenshots
+    │   ├── axis-studio.webp
+    │   ├── figma.png
+    │   ├── koso-preview.webp
+    │   └── SALN System.webp
+    └── tech/                            # Pure SVG brand vectors for the tech stack
+        ├── antigravity.svg, cplusplus.svg, css.svg, html.svg,
+        ├── java.svg, javascript.svg, mongodb.svg, mysql.svg,
+        ├── nodejs.svg, postgresql.svg, python.svg, react.svg,
+        └── tailwindcss.svg, tidb.svg, typescript.svg, vercel.svg, ...
 ```
 
 ---
 
-## 💼 Featured Works in the Portfolio
+## 🚀 Local Development & Usage
 
-1. **SALN Submission Portal**  
-   *Full-Stack Web Application* — Python (Flask), MySQL, JavaScript, HTML5, CSS3  
-   Secure government ID data collection, record management, and submission automation.
-2. **PUP Room Booking Prototype (PUPWESTO)**  
-   *UI/UX & HCI Architecture* — Figma, User Research, Wireframing, Usability Testing  
-   Human-Computer Interaction design and visual mapping for academic space management.
-3. **Koso Lifewear**  
-   *Front-End Development* — React, Vite, Tailwind CSS, TypeScript  
-   Minimalist apparel e-commerce interface exploring spring motion and accessible UI.
-4. **Axis Studio**  
-   *3D Front-End Customizer* — React 19, Three.js, Web Audio API, Vite, Tailwind CSS  
-   Interactive 3D mechanical keyboard customizer and virtual storefront.
+Because this portfolio is built exclusively with standard Web platform technologies (Vanilla HTML, CSS, and JavaScript), **no build step, bundler, or Node package manager installation is required**.
 
----
+### Quick Start
 
-## 🛠️ Tech Stack & Implementation Details
-
-- **Markup**: Semantic HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`, `<time>`)
-- **Styling**: Pure Modern CSS3 (CSS Custom Properties, CSS Grid, Flexbox, Clamp typography, Backdrop Filter)
-- **Scripting**: Vanilla JavaScript (ES6+ IntersectionObserver, Smooth Horizontal Scroll Controller)
-- **Accessibility**:
-  - Accessible skip link (`.skip-link`) for keyboard navigation.
-  - Visible high-contrast focus rings (`:focus-visible`).
-  - Screen-reader labels (`aria-label`, `aria-labelledby`, `aria-hidden`).
-  - Full support for `prefers-reduced-motion`.
-
----
-
-## 🚀 Running Locally
-
-Because this project is built entirely with standard web standards (Vanilla HTML, CSS, and JS), it requires no build tools or package managers:
-
-1. Clone or download the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/mrtnriel/Midterm-Project.git
+   cd Midterm-Project
    ```
-2. Open `index.html` directly in any modern browser, or run a local static server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
 
-   # Or using Node.js / npx
+2. **Launch with any local static HTTP server:**
+
+   *Using Python 3:*
+   ```bash
+   python -m http.server 8000
+   ```
+
+   *Using Node.js (`npx`):*
+   ```bash
    npx serve .
    ```
-3. Visit `http://localhost:8000` to view the portfolio.
+
+   *Using VS Code Live Server extension:*
+   Right-click `index.html` and select **"Open with Live Server"**.
+
+3. **Open in browser:**  
+   Navigate to `http://localhost:8000` (or the port specified by your server).
 
 ---
 
-## 👤 Author
+## ♿ Performance & Accessibility Standards
 
-**Gabriel Martin R. Manalo**
+- **Semantic Landmarks**: Strict use of `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<time>`, and `<footer>`.
+- **Keyboard Navigation**: Complete focus management with a visible skip link (`#main-content`), distinct `:focus-visible` outlines, and full keyboard control for carousels and accordions.
+- **ARIA Compliance**: Proper implementation of `aria-expanded`, `aria-controls`, `aria-label`, and `aria-hidden` attributes for assistive technologies.
+- **Motion Preferences**: Full support for `@media (prefers-reduced-motion: reduce)`, instantly nullifying transforms, animations, and transitions for sensitive users.
+- **Image Optimization**: WebP and SVG format prioritization, explicit dimensional attributes (`width`, `height`), and native lazy loading (`loading="lazy"`).
+
+---
+
+## 👤 Author & Contact Channels
+
+**Gabriel Martin R. Manalo** (`mrtn.riel`)  
+*BS Information Technology Student — Polytechnic University of the Philippines*
+
+- **Primary Email (Gmail)**: [martinramirezasdw@gmail.com](mailto:martinramirezasdw@gmail.com)
+- **Institutional Email (Outlook)**: [gabrielrmanalo@iskolarngbayan.pup.edu.ph](mailto:gabrielrmanalo@iskolarngbayan.pup.edu.ph)
 - **GitHub**: [@mrtnriel](https://github.com/mrtnriel)
 - **LinkedIn**: [Gabriel Martin Manalo](https://www.linkedin.com/in/gabriel-martin-manalo-411a0134a/)
-- **Email**: [martinramirezasdw@gmail.com](mailto:martinramirezasdw@gmail.com)
+- **Curriculum Vitae**: [View CV (PDF)](assets/cv/manalo_cv.pdf)
